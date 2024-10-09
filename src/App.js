@@ -1,13 +1,29 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import 'normalize.css';
 import './App.css';
+import { getDrivers } from './api';
+import Header from './Components/Header';
 
 function App() {
+  const [drivers, setDrivers] = useState([{id: 1, name: "Max"}, {id: 2, name: "Lando"}]);
+
+  useEffect(() => {
+    const fetchDrivers = async () => {
+      try {
+        const driversData = await getDrivers();
+        setDrivers(driversData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchDrivers();
+  }, []);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <Header />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
           className="App-link"
@@ -16,7 +32,11 @@ function App() {
           rel="noopener noreferrer"
         >
         </a>
-      </header>
+        <ul>
+          {drivers.map(driver => (
+            <li key={driver.id}>{driver.givenName} {driver.familyName}</li>
+          ))}
+        </ul>
     </div>
   );
 }
