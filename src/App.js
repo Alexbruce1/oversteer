@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
 import { getDrivers } from './api';
 import Header from './Components/Header';
+import Drivers from './Components/Drivers';
 
 function App() {
   const [drivers, setDrivers] = useState([{id: 1, name: "Max"}, {id: 2, name: "Lando"}]);
@@ -23,20 +25,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <p>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-        <ul>
-          {drivers.map(driver => (
-            <li key={driver.id}>{driver.givenName} {driver.familyName}</li>
-          ))}
-        </ul>
+      <Routes>
+        <Route path="/" element={<Drivers drivers={drivers} />} />
+      </Routes>
     </div>
   );
 }
