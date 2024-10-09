@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import 'normalize.css';
 import './App.css';
 import { getDrivers } from './api';
 import Header from './Components/Header';
