@@ -4,7 +4,9 @@ import './Header.css';
 function Header() {
   return (
     <header className="Header">
-      oversteer
+      <div className="top-header">
+        oversteer
+      </div>
     </header>
   )
 }
