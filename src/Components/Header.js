@@ -11,6 +11,7 @@ function Header() {
       </div>
       <div className="link-container">
         <a href="/" className="header-link">Home</a>
+        <a href="/drivers" className="header-link">Drivers</a>
       </div>
     </header>
   )

@@ -19,10 +19,22 @@ export const getSeasons = async () => {
   }
 };
 
-export const getDrivers = async () => {
+export const getDrivers = async (year) => {
   try {
-    const response = await apiClient.get('/2024/drivers');
+    const response = await apiClient.get(`/${year}/drivers`);
+    // console.log(response.data.MRData.DriverTable.Drivers)
     return response.data.MRData.DriverTable.Drivers;
+  } catch (error) {
+    console.error('Error fetching drivers:', error);
+    throw error;
+  }
+};
+
+export const getStandings = async (year) => {
+  try {
+    const response = await apiClient.get(`/${year}/driverstandings`);
+    console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+    return response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
   } catch (error) {
     console.error('Error fetching drivers:', error);
     throw error;
