@@ -2,12 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDrivers } from './api';
+import { getDrivers, getSeasons } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
+import Home from './Components/Home';
 
 function App() {
-  const [drivers, setDrivers] = useState([{id: 1, name: "Max"}, {id: 2, name: "Lando"}]);
+  const [drivers, setDrivers] = useState([]);
+  const [seasons, setSeasons] = useState([]);
+
+  useEffect(() => {
+    const fetchSeasons = async () => {
+      try {
+        const seasonData = await getSeasons();
+        setSeasons(seasonData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchSeasons();
+  }, []);
 
   useEffect(() => {
     const fetchDrivers = async () => {
@@ -21,12 +35,12 @@ function App() {
     fetchDrivers();
   }, []);
 
-
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Drivers drivers={drivers} />} />
+        <Route path="/" element={<Home seasons={seasons} />} />
+        <Route path="/drivers" element={<Drivers drivers={drivers} />} />
       </Routes>
     </div>
   );
