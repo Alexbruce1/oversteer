@@ -7,36 +7,21 @@ import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import Home from './Components/Home';
 
-
+const thisYear = new Date().getFullYear()
 
 function App() {
-  const [drivers, setDrivers] = useState([]);
   const [standings, setStandings] = useState([]);
   const [seasons, setSeasons] = useState([]);
-  const [season, setSeason] = useState(2024);
+  const [season, setSeason] = useState(thisYear);
 
-  // TEMPORARY SEASON SETTER 
   useEffect(() => {
     let years = []
-    for (let i = 1950; i <= 2024; i ++) {
+    for (let i = 1950; i <= thisYear; i ++) {
       years.push(parseInt(i))
     }
     setSeasons(years)
     console.log(years);
   }, []);
-
-
-  // useEffect(() => {
-  //   const fetchSeasons = async () => {
-  //     try {
-  //       const seasonData = await getSeasons();
-  //       setSeasons(seasonData);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchSeasons();
-  // }, []);
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -50,19 +35,6 @@ function App() {
     fetchStandings();
   }, [season]);
 
-
-  // useEffect(() => {
-  //   const fetchDrivers = async () => {
-  //     try {
-  //       const driversData = await getDrivers(season);
-  //       setDrivers(driversData);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchDrivers();
-  // }, [season]);
-
   const chooseSeason = (value) => {
     setSeason(value)
   }
@@ -74,13 +46,6 @@ function App() {
         <Route path="/" element={<Home chooseSeason={chooseSeason} seasons={seasons} />} />
         <Route path="/drivers" element={<Drivers drivers={standings} />} />
       </Routes>
-
-      <ul>
-        {drivers.map(driver => (
-          <li key={driver.code}>{driver.givenName} {driver.familyName}</li>
-        ))}
-      </ul>
-
     </div>
   );
 }
