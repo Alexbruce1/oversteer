@@ -9,7 +9,8 @@ function Home({ seasons }) {
         <select className="seasons-dropdown">
           {seasons && seasons.length > 0 ? (
             seasons.map(year => (
-              <option key={year.season} className="season-option">{year.season}</option>
+              // <option key={year.season} className="season-option">{year.season}</option>
+              <option key={year.season} className="season-option">{year}</option>
             ))
           ) : (
             <option>Loading...</option>

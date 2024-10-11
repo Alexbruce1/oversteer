@@ -7,21 +7,44 @@ import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import Home from './Components/Home';
 
+
+
 function App() {
   const [drivers, setDrivers] = useState([]);
   const [seasons, setSeasons] = useState([]);
 
+  // TEMPORARY SEASON SETTER 
   useEffect(() => {
-    const fetchSeasons = async () => {
-      try {
-        const seasonData = await getSeasons();
-        setSeasons(seasonData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchSeasons();
+    let years = []
+    for (let i = 1950; i <= 2024; i ++) {
+      years.push(parseInt(i))
+    }
+    setSeasons(years)
+    console.log(years);
+
+    // const fetchSeasons = async () => {
+    //   try {
+    //     const seasonData = await getSeasons();
+    //     setSeasons(seasonData);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // fetchSeasons();
   }, []);
+
+
+  // useEffect(() => {
+  //   const fetchSeasons = async () => {
+  //     try {
+  //       const seasonData = await getSeasons();
+  //       setSeasons(seasonData);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchSeasons();
+  // }, []);
 
   useEffect(() => {
     const fetchDrivers = async () => {
