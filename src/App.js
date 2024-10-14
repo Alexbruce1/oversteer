@@ -25,8 +25,8 @@ function App() {
     const storedSeason = JSON.parse(localStorage.getItem("Season")) || thisYear;
     setSeason(storedSeason);
 
-    const storedStandings = JSON.parse(localStorage.getItem("Standings"));
-    const storedImages = JSON.parse(localStorage.getItem("Images"));
+    const storedStandings = JSON.parse(localStorage.getItem(`Standings_${storedSeason}`));
+    const storedImages = JSON.parse(localStorage.getItem(`Images_${storedSeason}`));
 
     if (storedStandings) {
       setStandings(storedStandings);
@@ -42,11 +42,13 @@ function App() {
   const fetchStandings = async (season) => {
     try {
       const standingsData = await getStandings(season);
-      localStorage.setItem("Standings", JSON.stringify(standingsData));
+      localStorage.setItem(`Standings_${season}`, JSON.stringify(standingsData));
       setStandings(standingsData);
 
       const imagePromises = standingsData.map(async (driver) => {
-        const fullName = driver.Driver.familyName === "Sainz" ? `${driver.Driver.givenName}_${driver.Driver.familyName}_jr` : `${driver.Driver.givenName}_${driver.Driver.familyName}`;
+        const fullName = driver.Driver.familyName === "Sainz"
+          ? `${driver.Driver.givenName}_${driver.Driver.familyName}_jr`
+          : `${driver.Driver.givenName}_${driver.Driver.familyName}`;
         const imageUrl = await getDriverImage(fullName);
         return { driverId: driver.Driver.driverId, imageUrl };
       });
@@ -58,7 +60,7 @@ function App() {
       }, {});
 
       setDriverImages(imagesMap);
-      localStorage.setItem("Images", JSON.stringify(imagesMap));
+      localStorage.setItem(`Images_${season}`, JSON.stringify(imagesMap));
 
     } catch (error) {
       console.error(error);
@@ -69,12 +71,17 @@ function App() {
     localStorage.setItem("Season", JSON.stringify(value));
     setSeason(value);
 
-    const storedStandings = JSON.parse(localStorage.getItem("Standings"));
+    const storedStandings = JSON.parse(localStorage.getItem(`Standings_${value}`));
+    const storedImages = JSON.parse(localStorage.getItem(`Images_${value}`));
 
-    if (!storedStandings) {
-      fetchStandings(value);
-    } else {
+    if (storedStandings) {
       setStandings(storedStandings);
+    } else {
+      fetchStandings(value);
+    }
+
+    if (storedImages) {
+      setDriverImages(storedImages);
     }
   };
 
