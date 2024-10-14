@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+const apiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
 const API_BASE_URL = 'https://api.jolpi.ca/ergast/f1/';
-const THE_SPORTS_DB_PLAYERS_URL = 'https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=';
+const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${apiKey}/searchplayers.php?p=`;
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
