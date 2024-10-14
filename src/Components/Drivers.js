@@ -1,7 +1,7 @@
 import React from "react";
 import "./Drivers.css";
 
-function Drivers({ drivers }) {
+function Drivers({ drivers, driverImages }) {
   return (
     <div className="Drivers">
       <div className="driver-card-container">
@@ -17,6 +17,15 @@ function Drivers({ drivers }) {
                 className="driver-wiki-link" 
                 href={driver.Driver.url}
                 target="_blank">
+                { driverImages[driver.Driver.driverId] ? (
+                  <img 
+                    src={driverImages[driver.Driver.driverId]}
+                    className="driver-image"
+                    alt={`${driver.Driver.givenName} ${driver.Driver.familyName} image`}
+                  />
+                ) : (
+                  <div className="no-driver-image">no image available</div>
+                )}
                 <h2 className="driver-name driver-first-name">
                   {driver.Driver.givenName}  <strong className="driver-name driver-last-name">{driver.Driver.familyName}</strong>
                 </h2>

@@ -4,7 +4,7 @@ import './Home.css';
 function Home({ seasons, chooseSeason }) {
   return (
     <div className="Home">
-      Home
+      <h1 className="home-header">oversteer</h1>
       <form className="home-form">
         <select className="seasons-dropdown" onChange={(e) => {chooseSeason(e.currentTarget.value)}}>
           {seasons && seasons.length > 0 ? (

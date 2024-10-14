@@ -38,11 +38,31 @@
 .driver-code {
   font-style: italic;
   font-weight: 100;
+  display: flex;
+  align-items: center;
+}
+
+.driver-image {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+
+.no-driver-image {
+  width: 60%;
+  color: var(--header-black);
+  font-family: var(--racing-font);
+  aspect-ratio: 1 / 1;
+  background-color: #ddd;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .driver-wiki-link {
   text-decoration: none;
-  display: flex;
 }
 
 .driver-name {
