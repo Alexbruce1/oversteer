@@ -38,6 +38,8 @@
 .driver-code {
   font-style: italic;
   font-weight: 100;
+  display: flex;
+  align-items: center;
 }
 
 .driver-image {
