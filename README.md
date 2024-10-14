@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Oversteer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Oversteer** is an interactive web app designed for Formula 1 enthusiasts who want to dive into detailed information about F1 drivers, teams, and other related data. This app aggregates information from multiple APIs, making it a fun and informative resource for anyone interested in learning more about the world of F1.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [APIs Used](#apis-used)
+- [Getting Started](#getting-started)
+- [Running the App](#running-the-app)
+- [Future Features](#future-features)
+- [Contact](#contact)
+- [License](#license)
 
-### `npm start`
+## About the Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Oversteer is a web application that allows users to explore comprehensive information about Formula 1. The app presents data on F1 drivers, teams, and races in a visually appealing way, using APIs to provide real-time information. This project aims to create a fun and educational resource for F1 fans, from newcomers to seasoned enthusiasts.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Driver Profiles:** Learn about F1 drivers, their stats, and career history.
+- **Team Information:** Explore details about different teams and their performance over time.
+- **Real-Time Data:** Get up-to-date information on races, results, and driver standings.
+- **Engaging Interface:** A user-friendly interface to make exploring F1 data enjoyable.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- **Frontend:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - React.js
+  - CSS3 (with animations)
+  - React Router (for navigation)
+  - Axios (for handling API requests)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Deployment:**
+  - AWS Amplify
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## APIs Used
 
-### `npm run eject`
+- **Jolpica F1 API:** Used to fetch additional F1 statistics and data.
+- **TheSportsDB API:** Supplies images and further information on F1 drivers.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To run Oversteer locally, follow these instructions:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Make sure you have the following installed:
 
-## Learn More
+- [Node.js](https://nodejs.org/) (version 14+)
+- [npm](https://www.npmjs.com/) (Node package manager)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone the repository:
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   git clone https://github.com/your-username/oversteer.git
+   ```
