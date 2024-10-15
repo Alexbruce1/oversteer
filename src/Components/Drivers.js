@@ -1,9 +1,10 @@
 import React from "react";
 import "./Drivers.css";
 
-function Drivers({ drivers, driverImages }) {
+function Drivers({ drivers, driverImages, season }) {
   return (
     <div className="Drivers">
+      <h1 className="drivers-header">{season} F1 Standings</h1>
       <div className="driver-card-container">
         {drivers.map(driver => (
           <div 

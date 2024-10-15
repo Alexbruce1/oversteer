@@ -5,6 +5,7 @@ import './App.css';
 import { getDriverImage, getStandings } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
+import DriverInfo from './Components/DriverInfo';
 import Home from './Components/Home';
 
 const thisYear = new Date().getFullYear();
@@ -37,15 +38,16 @@ function App() {
     if (storedImages) {
       setDriverImages(storedImages);
     }
-  }, []);
+  }, [season]);
 
   const fetchStandings = async (season) => {
     try {
       const standingsData = await getStandings(season);
-      localStorage.setItem(`Standings_${season}`, JSON.stringify(standingsData));
-      setStandings(standingsData);
+      const cleanedStandingsData = standingsData.StandingsTable.StandingsLists[0].DriverStandings
+      localStorage.setItem(`Standings_${season}`, JSON.stringify(cleanedStandingsData));
+      setStandings(cleanedStandingsData);
 
-      const imagePromises = standingsData.map(async (driver) => {
+      const imagePromises = cleanedStandingsData.map(async (driver) => {
         const fullName = driver.Driver.familyName === "Sainz"
           ? `${driver.Driver.givenName}_${driver.Driver.familyName}_jr`
           : `${driver.Driver.givenName}_${driver.Driver.familyName}`;
@@ -68,13 +70,13 @@ function App() {
   };
 
   const chooseSeason = (value) => {
-    localStorage.setItem("Season", JSON.stringify(value));
     setSeason(value);
+    localStorage.setItem("Season", JSON.stringify(value));
 
     const storedStandings = JSON.parse(localStorage.getItem(`Standings_${value}`));
     const storedImages = JSON.parse(localStorage.getItem(`Images_${value}`));
 
-    if (storedStandings) {
+    if (storedStandings && storedImages) {
       setStandings(storedStandings);
     } else {
       fetchStandings(value);
@@ -89,8 +91,16 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Home chooseSeason={chooseSeason} seasons={seasons} />} />
-        <Route path="/drivers" element={<Drivers drivers={standings} driverImages={driverImages} />} />
+        <Route path="/" element={<Home 
+          chooseSeason={chooseSeason} 
+          seasons={seasons} 
+          season={season} 
+          />} />
+        <Route path="/drivers" element={<Drivers 
+          drivers={standings} 
+          driverImages={driverImages} 
+          season={season}/>} />
+        <Route path="/driver" element={<DriverInfo />} />
       </Routes>
     </div>
   );

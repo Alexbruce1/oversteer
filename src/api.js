@@ -11,7 +11,10 @@ const apiClient = axios.create({
 export const getStandings = async (year) => {
   try {
     const response = await apiClient.get(`/${year}/driverstandings`);
-    return response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+
+    console.log("Driver fetched: ", response.data.MRData);
+
+    return response.data.MRData;
   } catch (error) {
     console.error('Error fetching drivers:', error);
     throw error;
@@ -23,7 +26,9 @@ export const getDriverImage = async (fullName) => {
     const url = `${THE_SPORTS_DB_PLAYERS_URL}${fullName}`;
     const response = await axios.get(url);
     const player = response.data.player ? response.data.player[0] : null;
-    
+
+    console.log("Image fetched: ", player);
+
     if (player && player.strCutout) {
       return player.strCutout;
     } else {
