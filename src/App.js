@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
 import { getDriverImage, getStandings } from './api';
@@ -100,7 +100,7 @@ function App() {
           drivers={standings} 
           driverImages={driverImages} 
           season={season}/>} />
-        <Route path="/driver" element={<DriverInfo />} />
+        <Route path="/driver/:name" element={<DriverInfo />} />
       </Routes>
     </div>
   );

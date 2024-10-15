@@ -1,5 +1,6 @@
 import React from "react";
 import "./Drivers.css";
+import { Link } from 'react-router-dom';
 
 function Drivers({ drivers, driverImages, season }) {
   return (
@@ -7,7 +8,8 @@ function Drivers({ drivers, driverImages, season }) {
       <h1 className="drivers-header">{season} F1 Standings</h1>
       <div className="driver-card-container">
         {drivers.map(driver => (
-          <div 
+          <Link 
+            to={`/driver/${encodeURIComponent(driver.Driver.givenName)}_${encodeURIComponent(driver.Driver.familyName)}`}
             className="driver-card"
             key={driver.Driver.code}>
               <div className="driver-top-info">
@@ -33,7 +35,7 @@ function Drivers({ drivers, driverImages, season }) {
               </a>
               <div className="driver-team">{driver.Constructors[0].name}</div>
               <div className="driver-points">{driver.points !== 1 ? `${driver.points} PTS` : "1 PT"}</div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
