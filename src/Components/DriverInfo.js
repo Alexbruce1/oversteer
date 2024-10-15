@@ -1,9 +1,12 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 
 function DriverInfo() {
+  const { name } = useParams();
   return (
     <div>
-      DRIVER INFO
+      {decodeURIComponent(name)}
+      
     </div>
   )
 }
