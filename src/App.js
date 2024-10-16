@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDriverImage, getStandings } from './api';
+import { getDriverImage, getStandings, getNews } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
@@ -15,6 +15,9 @@ function App() {
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
+  const [articles, setArticles] = useState([]); 
+  const [loadingArticles, setLoadingArticles] = useState(true);
+  const [articlesError, setArticlesError] = useState(null);
 
   useEffect(() => {
     let years = [];
@@ -38,6 +41,19 @@ function App() {
     if (storedImages) {
       setDriverImages(storedImages);
     }
+
+    const fetchNewsArticles = async () => {
+      try {
+        const fetchedArticles = await getNews();
+        setArticles(fetchedArticles);
+        setLoadingArticles(false);
+      } catch (error) {
+        setArticlesError("Failed to load articles");
+        setLoadingArticles(false);
+      }
+    };
+
+    fetchNewsArticles();
   }, [season]);
 
   const fetchStandings = async (season) => {
@@ -91,15 +107,26 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Home 
-          chooseSeason={chooseSeason} 
-          seasons={seasons} 
-          season={season} 
-          />} />
-        <Route path="/drivers" element={<Drivers 
-          drivers={standings} 
-          driverImages={driverImages} 
-          season={season}/>} />
+        <Route 
+          path="/" 
+          element={
+            <Home 
+              chooseSeason={chooseSeason} 
+              seasons={seasons} 
+              season={season}
+              articles={articles}
+              loadingArticles={loadingArticles}
+              articlesError={articlesError}
+            />
+          } 
+        />
+        <Route 
+          path="/drivers" 
+          element={<Drivers 
+            drivers={standings} 
+            driverImages={driverImages} 
+            season={season}/>} 
+        />
         <Route path="/driver/:name" element={<DriverInfo />} />
       </Routes>
     </div>
