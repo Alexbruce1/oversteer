@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-const apiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
-const API_BASE_URL = 'https://api.jolpi.ca/ergast/f1/';
-const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${apiKey}/searchplayers.php?p=`;
+let newsSortBy = "relevancy";
+let newsPageSize = "20"
+
+const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
+const JOLPI_API_BASE_URL = 'https://api.jolpi.ca/ergast/f1/';
+const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?q=Formula%201%20racing&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: JOLPI_API_BASE_URL,
 });
 
 export const getStandings = async (year) => {
@@ -18,6 +22,18 @@ export const getStandings = async (year) => {
   } catch (error) {
     console.error('Error fetching drivers:', error);
     throw error;
+  }
+};
+
+export const getNews = async () => {
+  try {
+    const url = `${NEWS_API_BASE_URL}`;
+    const response = await axios.get(url);
+    const articles = response.data.articles;
+    return articles;
+  } catch (error) {
+    console.error("Error getting articles: ", error);
+    return null;
   }
 };
 
