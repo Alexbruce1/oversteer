@@ -16,6 +16,10 @@
   border-radius: 4px;
 }
 
+.seasons-form-text {
+  margin: 0;
+}
+
 .seasons-dropdown,
 .form-submit-button {
   height: 35px;
@@ -46,18 +50,17 @@
   margin: 10px auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 5%;
+  gap: 2%;
 }
 
 .article-card {
   background-color: #eee;
   display: block;
-  max-width: 30%;
-  margin-bottom: 35px;
+  max-width: 32%;
+  margin-bottom: 25px;
   padding-bottom: 10px;
   box-sizing: border-box;
   border-radius: 8px;
-  /* border: 2px solid var(--f1-red); */
   text-decoration: none;
   cursor: pointer;
 }
@@ -75,11 +78,11 @@
   object-fit: cover;
   margin: auto;
   padding-bottom: 10px;
-  transition: all .8s ease;
+  transition: all .6s ease;
 }
 
 .article-card:hover .article-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .article-title {
@@ -89,10 +92,31 @@
   text-decoration: none;
   text-align: left;
   font-weight: 700;
+  height: 42px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-source {
+  padding: 0;
+  text-align: left;
+  margin: 0 0 0 10px;
+  font-size: 15px;
+  height: 13px;
+  color: var(--f1-red);
 }
 
 .article-description {
-  margin: 10px;
   color: #666;
+  margin: 10px;
+  line-height: 1.2;
   text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

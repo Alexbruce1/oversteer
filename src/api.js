@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 let newsSortBy = "relevancy";
-let newsPageSize = "20"
+let newsPageSize = "20";
+let newsLanguage = "en";
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
 const JOLPI_API_BASE_URL = 'https://api.jolpi.ca/ergast/f1/';
-const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?q=Formula%201%20racing&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?q=Formula%201%20racing&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
 const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
 
 const apiClient = axios.create({

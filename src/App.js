@@ -7,11 +7,13 @@ import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
 import Home from './Components/Home';
+import Teams from './Components/Teams';
 
 const thisYear = new Date().getFullYear();
 
 function App() {
   const [standings, setStandings] = useState([]);
+  const [teamStandings, setTeamStandings] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
@@ -125,6 +127,13 @@ function App() {
           element={<Drivers 
             drivers={standings} 
             driverImages={driverImages} 
+            season={season}/>} 
+        />
+        <Route 
+          path="/teams" 
+          element={<Teams 
+            // drivers={standings} 
+            // driverImages={driverImages} 
             season={season}/>} 
         />
         <Route path="/driver/:name" element={<DriverInfo />} />

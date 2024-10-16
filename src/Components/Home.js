@@ -45,6 +45,7 @@ function Home ({ chooseSeason, seasons, season, articles, loadingArticles, artic
                   className="article-title">
                   {article.title}
                 </h2>
+                <h3 className="article-source">{article.source.name}</h3>
                 <p className="article-description">{article.description}</p>
               </a>
             ))}
