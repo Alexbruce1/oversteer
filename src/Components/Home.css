@@ -46,14 +46,14 @@
   margin: 10px auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 5%;
+  gap: 2%;
 }
 
 .article-card {
   background-color: #eee;
   display: block;
-  max-width: 30%;
-  margin-bottom: 35px;
+  max-width: 32%;
+  margin-bottom: 25px;
   padding-bottom: 10px;
   box-sizing: border-box;
   border-radius: 8px;
