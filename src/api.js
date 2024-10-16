@@ -26,6 +26,19 @@ export const getStandings = async (year) => {
   }
 };
 
+export const getConstructorStandings = async (year) => {
+  try {
+    const response = await apiClient.get(`/${year}/constructorstandings`);
+
+    console.log("Constructors fetched: ", response.data.MRData);
+
+    return response.data.MRData;
+  } catch (error) {
+    console.error('Error fetching constructors:', error);
+    throw error;
+  }
+};
+
 export const getNews = async () => {
   try {
     const url = `${NEWS_API_BASE_URL}`;

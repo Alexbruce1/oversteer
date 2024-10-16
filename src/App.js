@@ -116,6 +116,8 @@ function App() {
               chooseSeason={chooseSeason} 
               seasons={seasons} 
               season={season}
+              drivers={standings}
+              driverImages={driverImages}
               articles={articles}
               loadingArticles={loadingArticles}
               articlesError={articlesError}
@@ -132,6 +134,7 @@ function App() {
         <Route 
           path="/teams" 
           element={<Teams 
+            // getStandings={getConstructorStandings}
             // drivers={standings} 
             // driverImages={driverImages} 
             season={season}/>} 

@@ -1,0 +1,76 @@
+.driver-card {
+  background-color: #eee;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 30%;
+  text-align: left;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--header-black);
+}
+
+.driver-card h2 {
+  margin: 0;
+}
+
+.driver-top-info {
+  font-family: var(--racing-font);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #666;
+}
+
+.driver-number {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: .9;
+}
+
+.driver-code {
+  font-style: italic;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+}
+
+.driver-image {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+
+.no-driver-image {
+  width: 60%;
+  color: var(--header-black);
+  font-family: var(--racing-font);
+  aspect-ratio: 1 / 1;
+  background-color: #ddd;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.driver-wiki-link {
+  text-decoration: none;
+}
+
+.driver-name {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--f1-red);
+}
+
+.driver-last-name {
+  font-weight: 700;
+  color: var(--header-black);
+}
+
+.driver-points {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 900;
+}
