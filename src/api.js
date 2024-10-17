@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let newsSortBy = "relevancy";
+let newsSortBy = "publishedAt";
 let newsPageSize = "20";
 let newsLanguage = "en";
 
