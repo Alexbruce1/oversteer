@@ -14,6 +14,7 @@ const thisYear = new Date().getFullYear();
 function App() {
   const [standings, setStandings] = useState([]);
   const [teamStandings, setTeamStandings] = useState({});
+  const [currentSeason, setCurrentSeason] = useState();
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
@@ -46,10 +47,8 @@ function App() {
     }
 
     if (storedConstructorStandings) {
-      console.log("team standings: ", storedConstructorStandings)
       setTeamStandings(storedConstructorStandings);
     } else {
-      console.lot("Fetching team standings: ")
       fetchTeamStandings()
     }
 
@@ -98,12 +97,18 @@ function App() {
 
   const fetchTeamStandings = async () => {
     try {
-      const teamStandingsData = await getConstructorStandings(thisYear)
-      console.log("GET TEAMS", teamStandingsData)
-      localStorage.setItem("ConstructorStandings", JSON.stringify(teamStandingsData))
-      setTeamStandings(teamStandingsData);
+      const teamStandingsData = await getConstructorStandings(thisYear);
+      const cleanedTeamStandingsData = teamStandingsData.ConstructorStandings;
+      const currentSeason = teamStandingsData.season;
+
+      console.log("GET TEAMS", cleanedTeamStandingsData)
+      localStorage.setItem("CurrentSeason", JSON.stringify(currentSeason));
+      setCurrentSeason(currentSeason);
+
+      localStorage.setItem("ConstructorStandings", JSON.stringify(cleanedTeamStandingsData));
+      setTeamStandings(cleanedTeamStandingsData);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 

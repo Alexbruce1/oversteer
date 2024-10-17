@@ -5,8 +5,12 @@
   width: 30%;
   text-align: left;
   padding: 10px;
-  text-decoration: none;
+}
+
+.driver-card-link {
   color: var(--header-black);
+  text-decoration: none;
+  width: 100%;
 }
 
 .driver-card h2 {
