@@ -7,7 +7,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
 
   return (
     <div className="driver-card">
-      {(location.pathname === '/drivers') || (location.pathname === '/') && (
+      {(location.pathname === '/drivers' || location.pathname === '/') && (
         <Link 
           to={`/driver/${encodeURIComponent(driverFirst)}_${encodeURIComponent(driverLast)}`}
           className="driver-card-link"
