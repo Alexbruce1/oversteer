@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDriverImage, getStandings, getNews } from './api';
+import { getDriverImage, getStandings, getNews, getConstructorStandings } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
@@ -13,7 +13,7 @@ const thisYear = new Date().getFullYear();
 
 function App() {
   const [standings, setStandings] = useState([]);
-  const [teamStandings, setTeamStandings] = useState([]);
+  const [teamStandings, setTeamStandings] = useState({});
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
@@ -33,6 +33,7 @@ function App() {
 
     const storedStandings = JSON.parse(localStorage.getItem(`Standings_${storedSeason}`));
     const storedImages = JSON.parse(localStorage.getItem(`Images_${storedSeason}`));
+    const storedConstructorStandings = JSON.parse(localStorage.getItem("ConstructorStandings"));
 
     if (storedStandings) {
       setStandings(storedStandings);
@@ -42,6 +43,14 @@ function App() {
 
     if (storedImages) {
       setDriverImages(storedImages);
+    }
+
+    if (storedConstructorStandings) {
+      console.log("team standings: ", storedConstructorStandings)
+      setTeamStandings(storedConstructorStandings);
+    } else {
+      console.lot("Fetching team standings: ")
+      fetchTeamStandings()
     }
 
     const fetchNewsArticles = async () => {
@@ -84,6 +93,17 @@ function App() {
 
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const fetchTeamStandings = async () => {
+    try {
+      const teamStandingsData = await getConstructorStandings(thisYear)
+      console.log("GET TEAMS", teamStandingsData)
+      localStorage.setItem("ConstructorStandings", JSON.stringify(teamStandingsData))
+      setTeamStandings(teamStandingsData);
+    } catch (error) {
+      console.error(error)
     }
   };
 
@@ -134,8 +154,8 @@ function App() {
         <Route 
           path="/teams" 
           element={<Teams 
-            // getStandings={getConstructorStandings}
-            // drivers={standings} 
+            getStandings={fetchTeamStandings}
+            standings={teamStandings}
             // driverImages={driverImages} 
             season={season}/>} 
         />

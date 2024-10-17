@@ -17,8 +17,6 @@ export const getStandings = async (year) => {
   try {
     const response = await apiClient.get(`/${year}/driverstandings`);
 
-    console.log("Driver fetched: ", response.data.MRData);
-
     return response.data.MRData;
   } catch (error) {
     console.error('Error fetching drivers:', error);
@@ -29,10 +27,9 @@ export const getStandings = async (year) => {
 export const getConstructorStandings = async (year) => {
   try {
     const response = await apiClient.get(`/${year}/constructorstandings`);
-
-    console.log("Constructors fetched: ", response.data.MRData);
-
-    return response.data.MRData;
+    const data = response.data.MRData.StandingsTable.StandingsLists[0];
+    
+    return data;
   } catch (error) {
     console.error('Error fetching constructors:', error);
     throw error;
