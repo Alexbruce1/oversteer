@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let newsSortBy = "relevancy";
+let newsSortBy = "publishedAt";
 let newsPageSize = "20";
 let newsLanguage = "en";
 
@@ -17,11 +17,21 @@ export const getStandings = async (year) => {
   try {
     const response = await apiClient.get(`/${year}/driverstandings`);
 
-    console.log("Driver fetched: ", response.data.MRData);
-
     return response.data.MRData;
   } catch (error) {
     console.error('Error fetching drivers:', error);
+    throw error;
+  }
+};
+
+export const getConstructorStandings = async (year) => {
+  try {
+    const response = await apiClient.get(`/${year}/constructorstandings`);
+    const data = response.data.MRData.StandingsTable.StandingsLists[0];
+    
+    return data;
+  } catch (error) {
+    console.error('Error fetching constructors:', error);
     throw error;
   }
 };

@@ -1,12 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Home.css';
+import DriverCard from "./DriverCard";
 
-function Home ({ chooseSeason, seasons, season, articles, loadingArticles, articlesError }) {
+function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles, loadingArticles, articlesError }) {
+  const [topDrivers, setTopDrivers] = useState([]);
+
+  useEffect(() => {
+    const topThreeDrivers = drivers.filter(driver => {
+      return parseInt(driver.position) < 4
+    });
+
+    setTopDrivers(topThreeDrivers)
+  }, drivers)
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <div className="Home">
-      <h1 className="home-header">oversteer</h1>
-      <div className="home-form-container">
-        <form className="home-form">
+      <h1 className="home-header">{season} F1 Standings</h1>
+      <div className="top-3-container home-section-container">
+        {topDrivers.map(driver => {
+          let placeText = "";
+
+          parseInt(driver.position) === 1 ? placeText = "1st" :
+          parseInt(driver.position) === 2 ? placeText = "2nd" :
+          placeText = "3rd";
+
+          return (
+              <DriverCard 
+                key={driver.Driver.code}
+                driverKey={driver.Driver.code} 
+                driverNumber={placeText}
+                driverCode={driver.Driver.code}
+                driverWikiLink={driver.Driver.url}
+                driverImages={driverImages[driver.Driver.driverId]}
+                driverFirst={driver.Driver.givenName}
+                driverLast={driver.Driver.familyName}
+                driverTeam={driver.Constructors[0].name}
+                driverPoints={driver.points}
+              />
+          )
+        })}
+      </div>
+      <div className="home-form-container home-section-container">
+        <form className="home-form" onSubmit={handleSubmit}>
           <select 
             className="seasons-dropdown" 
             value={season}
@@ -30,7 +69,7 @@ function Home ({ chooseSeason, seasons, season, articles, loadingArticles, artic
         {articlesError && <p>{articlesError}</p>}
 
         {!loadingArticles && !articlesError && Array.isArray(articles) && articles.length > 0 ? (
-          <div className="articles-container">
+          <div className="articles-container home-section-container">
             {articles.map((article, index) => (
               <a 
                 className="article-card" 

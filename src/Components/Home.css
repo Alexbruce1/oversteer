@@ -2,11 +2,24 @@
   min-height: 100vh;
 }
 
+.home-header {
+  font-style: italic;
+  
+}
+
+.home-section-container {
+  max-width: 1200px;
+  width: var(--element-width);
+  margin: 10px auto;
+}
+
+.top-3-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .home-form-container {
   background: linear-gradient(166deg, rgba(248,155,95,1) 0%, #e20500 100%);
-  width: var(--element-width);
-  max-width: 1200px;
-  margin: 10px auto;
   padding: 10px;
   border-radius: 10px;
 }
@@ -45,9 +58,6 @@
 }
 
 .articles-container {
-  width: var(--element-width);
-  max-width: 1200px;
-  margin: 10px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 2%;
