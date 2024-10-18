@@ -49,7 +49,7 @@
   width: 60%;
   color: var(--header-black);
   font-family: var(--racing-font);
-  aspect-ratio: 1 / 1;
+  height: 100%;
   background-color: #ddd;
   margin: auto;
   display: flex;
@@ -77,4 +77,19 @@
   text-align: right;
   font-size: 15px;
   font-weight: 900;
+}
+
+.team-image-container {
+  display: flex;
+  align-items: center;
+  height: 200px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.car-image {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  margin: 0 auto;
 }
