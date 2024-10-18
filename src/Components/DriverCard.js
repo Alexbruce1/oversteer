@@ -47,22 +47,22 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             <h2 className="driver-code">{driverCode}</h2>
           </div>
           <div 
-            className="driver-wiki-link" 
+            className="team-image-container" 
             href={driverWikiLink}
             target="_blank">
             { driverImages ? (
               <img 
-                src={driverImages}
-                className="driver-image"
+                src={driverImages.car}
+                className="car-image"
                 alt={`${driverFirst} ${driverLast} image`}
               />
             ) : (
-              <div className="no-driver-image">no image available</div>
+              <div className="no-driver-image no-team-image">no image available</div>
             )}
-            <h2 className="driver-name driver-first-name">
-              {driverFirst}  <strong className="driver-name driver-last-name">{driverLast}</strong>
-            </h2>
           </div>
+          <h2 className="driver-name driver-first-name">
+            {driverFirst}  <strong className="driver-name driver-last-name">{driverLast}</strong>
+          </h2>
           <div className="driver-team">{driverTeam}</div>
           <div className="driver-points">{driverPoints}</div>
         </Link>

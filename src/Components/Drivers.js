@@ -6,7 +6,7 @@ function Drivers({ drivers, driverImages, season }) {
   return (
     <div className="Drivers">
       <h1 className="drivers-header">{season} F1 Standings</h1>
-      <div className="driver-card-container">
+      <div className="driver-card-container card-container">
         {drivers.map(driver => (
           <DriverCard 
             driverKey={driver.Driver.code} 

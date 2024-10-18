@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDriverImage, getStandings, getNews, getConstructorStandings } from './api';
+import { getDriverImage, getStandings, getNews, getConstructorStandings, getTeamImages } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
@@ -14,6 +14,7 @@ const thisYear = new Date().getFullYear();
 function App() {
   const [standings, setStandings] = useState([]);
   const [teamStandings, setTeamStandings] = useState({});
+  const [teamData, setTeamData] = useState({});
   const [currentSeason, setCurrentSeason] = useState();
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
@@ -32,9 +33,17 @@ function App() {
     const storedSeason = JSON.parse(localStorage.getItem("Season")) || thisYear;
     setSeason(storedSeason);
 
-    const storedStandings = JSON.parse(localStorage.getItem(`Standings_${storedSeason}`));
-    const storedImages = JSON.parse(localStorage.getItem(`Images_${storedSeason}`));
-    const storedConstructorStandings = JSON.parse(localStorage.getItem("ConstructorStandings"));
+    const checkDataAge = (key) => {
+      const storedItem = JSON.parse(localStorage.getItem(key));
+      const timestamp = localStorage.getItem(`${key}_timestamp`);
+      const isOld = timestamp ? (Date.now() - timestamp) > (24 * 60 * 60 * 1000) : true; // Check if data is older than a day
+      return isOld ? null : storedItem;
+    };
+
+    const storedStandings = checkDataAge(`Standings_${storedSeason}`);
+    const storedImages = checkDataAge(`Images_${storedSeason}`);
+    const storedConstructorStandings = checkDataAge("ConstructorStandings");
+    const storedTeamData = checkDataAge("TeamData");
 
     if (storedStandings) {
       setStandings(storedStandings);
@@ -49,28 +58,40 @@ function App() {
     if (storedConstructorStandings) {
       setTeamStandings(storedConstructorStandings);
     } else {
-      fetchTeamStandings()
+      fetchTeamStandings();
     }
 
-    const fetchNewsArticles = async () => {
-      try {
-        const fetchedArticles = await getNews();
-        setArticles(fetchedArticles);
-        setLoadingArticles(false);
-      } catch (error) {
-        setArticlesError("Failed to load articles");
-        setLoadingArticles(false);
-      }
-    };
+    if (storedTeamData) {
+      setTeamData(storedTeamData);
+    } else {
+      fetchTeamData();
+    }
 
     fetchNewsArticles();
+
   }, [season]);
+
+  const fetchTeamData = async () => {
+    console.log("fetchTeamData called")
+    try {
+        const teamImages = await getTeamImages();
+        console.log("TEAM IMAGES: ", teamImages)
+        if (teamImages) {
+            setTeamData(teamImages);
+            localStorage.setItem("TeamData", JSON.stringify(teamImages));
+            localStorage.setItem("TeamData_timestamp", Date.now());
+        }
+    } catch (error) {
+        console.error('Error fetching team data: ', error);
+    }
+};
 
   const fetchStandings = async (season) => {
     try {
       const standingsData = await getStandings(season);
-      const cleanedStandingsData = standingsData.StandingsTable.StandingsLists[0].DriverStandings
+      const cleanedStandingsData = standingsData.StandingsTable.StandingsLists[0].DriverStandings;
       localStorage.setItem(`Standings_${season}`, JSON.stringify(cleanedStandingsData));
+      localStorage.setItem(`Standings_${season}_timestamp`, Date.now());
       setStandings(cleanedStandingsData);
 
       const imagePromises = cleanedStandingsData.map(async (driver) => {
@@ -89,6 +110,7 @@ function App() {
 
       setDriverImages(imagesMap);
       localStorage.setItem(`Images_${season}`, JSON.stringify(imagesMap));
+      localStorage.setItem(`Images_${season}_timestamp`, Date.now());
 
     } catch (error) {
       console.error(error);
@@ -101,14 +123,25 @@ function App() {
       const cleanedTeamStandingsData = teamStandingsData.ConstructorStandings;
       const currentSeason = teamStandingsData.season;
 
-      console.log("GET TEAMS", cleanedTeamStandingsData)
       localStorage.setItem("CurrentSeason", JSON.stringify(currentSeason));
       setCurrentSeason(currentSeason);
 
       localStorage.setItem("ConstructorStandings", JSON.stringify(cleanedTeamStandingsData));
+      localStorage.setItem("ConstructorStandings_timestamp", Date.now());
       setTeamStandings(cleanedTeamStandingsData);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const fetchNewsArticles = async () => {
+    try {
+      const fetchedArticles = await getNews();
+      setArticles(fetchedArticles);
+      setLoadingArticles(false);
+    } catch (error) {
+      setArticlesError("Failed to load articles");
+      setLoadingArticles(false);
     }
   };
 
@@ -161,7 +194,7 @@ function App() {
           element={<Teams 
             getStandings={fetchTeamStandings}
             standings={teamStandings}
-            // driverImages={driverImages} 
+            teamData={teamData}
             season={season}/>} 
         />
         <Route path="/driver/:name" element={<DriverInfo />} />
