@@ -23,12 +23,11 @@ function Teams({ getStandings, standings, teamData }) {
           return (
             <DriverCard 
               key={team.Constructor.constructorId}
-              driverNumber={team.position}
-              driverCode={team.points === 1 ? "1 Pt" : `${team.points} PTS`}
-              driverWikiLink={team.Constructor.url}
-              driverFirst={team.Constructor.name}
-              driverTeam={team.wins === 1 ? "1 win" : `${team.wins} wins`}
-              driverPoints={team.Constructor.nationality}
+              teamPosition={team.position}
+              teamPoints={team.points === 1 ? "1 Pt" : `${team.points} PTS`}
+              teamName={team.Constructor.name}
+              teamWins={team.wins === 1 ? "1 win" : `${team.wins} wins`}
+              teamNationality={team.Constructor.nationality}
               driverImages={teamImages.length ? teamImages.find(i => i.name.includes(team.Constructor.name)) : null}
             />
           )
