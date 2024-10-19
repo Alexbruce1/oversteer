@@ -17,7 +17,7 @@
   margin: 0;
 }
 
-.driver-top-info {
+.card-top-info {
   font-family: var(--racing-font);
   display: flex;
   justify-content: space-between;
@@ -26,13 +26,15 @@
   border-bottom: 1px solid #666;
 }
 
-.driver-number {
+.driver-number,
+.team-position {
   font-size: 40px;
   font-weight: 900;
   line-height: .9;
 }
 
-.driver-code {
+.driver-code,
+.team-points {
   font-style: italic;
   font-weight: 100;
   display: flex;
@@ -68,12 +70,18 @@
   color: var(--f1-red);
 }
 
+.team-name {
+  font-style: italic;
+  color: var(--f1-red);
+}
+
 .driver-last-name {
   font-weight: 700;
   color: var(--header-black);
 }
 
-.driver-points {
+.driver-points,
+.team-nationality {
   text-align: right;
   font-size: 15px;
   font-weight: 900;
@@ -88,7 +96,7 @@
   border-radius: 10px;
 }
 
-.car-image {
+.team-image {
   background-color: var(--header-black);
   width: 100%;
   display: block;
