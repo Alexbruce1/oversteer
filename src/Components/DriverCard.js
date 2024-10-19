@@ -52,7 +52,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             target="_blank">
             { driverImages ? (
               <img 
-                src={driverImages.car}
+                src={driverImages.logo}
                 className="car-image"
                 alt={`${driverFirst} ${driverLast} image`}
               />
