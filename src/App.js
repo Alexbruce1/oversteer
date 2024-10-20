@@ -8,6 +8,7 @@ import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
 import Home from './Components/Home';
 import Teams from './Components/Teams';
+import Races from './Components/Races';
 
 const thisYear = new Date().getFullYear();
 
@@ -36,7 +37,7 @@ function App() {
     const checkDataAge = (key) => {
       const storedItem = JSON.parse(localStorage.getItem(key));
       const timestamp = localStorage.getItem(`${key}_timestamp`);
-      const isOld = timestamp ? (Date.now() - timestamp) > (24 * 60 * 60 * 1000) : true; // Check if data is older than a day
+      const isOld = timestamp ? (Date.now() - timestamp) > (24 * 60 * 60 * 1000) : true;
       return isOld ? null : storedItem;
     };
 
@@ -188,6 +189,10 @@ function App() {
             drivers={standings} 
             driverImages={driverImages} 
             season={season}/>} 
+        />
+        <Route 
+          path="/races" 
+          element={<Races />} 
         />
         <Route 
           path="/teams" 
