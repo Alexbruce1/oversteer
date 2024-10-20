@@ -39,7 +39,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
       )}
       {(location.pathname === '/teams') && (
         <Link 
-          to={`/driver/${encodeURIComponent(driverFirst)}`}
+          to={`/team/${encodeURIComponent(teamName)}`}
           className="driver-card-link"
           key={driverKey}>
           <div className="card-top-info">

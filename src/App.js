@@ -198,6 +198,7 @@ function App() {
             season={season}/>} 
         />
         <Route path="/driver/:name" element={<DriverInfo />} />
+        {/* <Route path="/team/:name" element={<DriverInfo />} /> */}
       </Routes>
     </div>
   );

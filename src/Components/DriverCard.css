@@ -1,6 +1,7 @@
 .driver-card {
-  background-color: #eee;
-  border-radius: 5px;
+  /* background-color: #eee; */
+  background: linear-gradient(#444, #222);
+  border-radius: 10px;
   margin: 10px 0;
   width: 30%;
   text-align: left;
@@ -8,7 +9,7 @@
 }
 
 .driver-card-link {
-  color: var(--header-black);
+  color: #eee;
   text-decoration: none;
   width: 100%;
 }
@@ -49,10 +50,11 @@
 
 .no-driver-image {
   width: 60%;
-  color: var(--header-black);
+  color: #eee;
   font-family: var(--racing-font);
+  font-size: 20px;
   height: 100%;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   margin: auto;
   display: flex;
   align-items: center;
@@ -77,7 +79,7 @@
 
 .driver-last-name {
   font-weight: 700;
-  color: var(--header-black);
+  color: #eee;
 }
 
 .driver-points,
@@ -97,7 +99,7 @@
 }
 
 .team-image {
-  background-color: var(--header-black);
+  /* background-color: var(--header-black); */
   width: 100%;
   display: block;
   aspect-ratio: 1 / 1;
