@@ -2,4 +2,10 @@
   width: 95%;
   max-width: 1200px;
   margin: auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
 }

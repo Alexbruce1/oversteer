@@ -105,3 +105,14 @@ export const getTeamImages = async () => {
     return null;
   }
 }
+
+export const getCountryFlag = async (country) => {
+  try {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+    const countryData = await response.json();
+    const flagUrl = countryData[0].flags.svg;
+    return flagUrl;
+  } catch (error) {
+    console.error(`Error fetching a flag for ${country}: `, error)
+  }
+}

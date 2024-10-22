@@ -1,7 +1,47 @@
 .race-card {
-  width: 100%;
-  margin-bottom: 20px;
+  flex-basis: calc(50% - 10px);
+  background: var(--card-background-gradient-horizontal);
+  box-sizing: border-box;
   background-color: #666;
   border-radius: 10px;
   color: #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.race-card-left-section,
+.race-card-right-section {
+  padding: 20px;
+  border-radius: 10px;
+  flex-basis: calc(45% - 10px);
+}
+
+.race-card-left-section {
+  text-align: start;
+}
+
+.race-card-race-name {
+  margin: 0;
+  text-align: left;
+  font-family: var(--racing-font);
+  font-weight: 300;
+}
+
+.race-card-location {
+  margin: 0;
+}
+
+.race-card-race-date {
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+}
+
+.flag-image {
+  height: 50px;
+  margin: 10px auto;
+}
+
+.race-card-right-section {
+  flex-basis: calc(50% - 10px);
 }
