@@ -38,12 +38,12 @@ export const getRaces = async (year = 2024) => {
 export const getResults = async (year = 2024, rounds) => {
   let currentRound = 0;
   let results = [];
+
   // search for race results BY RACE. Fetching them all in one only returns the first two results. This gets everything for the season
   while (currentRound < rounds) {
     currentRound ++;
     try {
       const response = await apiClient.get(`/${year}/${currentRound}/results`);
-      console.log("fuck", response.data)
       results.push(response.data.MRData.RaceTable.Races[0]);
     } catch (error) {
       console.error("Error fetching results: ", error);

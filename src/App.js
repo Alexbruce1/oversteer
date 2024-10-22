@@ -18,7 +18,7 @@ function App() {
   const [teamData, setTeamData] = useState({});
   const [currentSeason, setCurrentSeason] = useState();
   const [currentSeasonRounds, setCurrentSeasonRounds] = useState();
-  const [raceResults, setRaceResults] = useState();
+  const [races, setRaces] = useState();
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
@@ -34,6 +34,7 @@ function App() {
     setSeasons(years);
 
     const storedSeason = JSON.parse(localStorage.getItem("Season")) || thisYear;
+    const storedRaces = JSON.parse(localStorage.getItem(`Races_${storedSeason}`));
     setSeason(storedSeason);
 
     const checkDataAge = (key) => {
@@ -70,6 +71,14 @@ function App() {
       fetchTeamData();
     }
 
+    if (storedRaces) {
+      console.log("CLOG storedRaces: ", storedRaces)
+      setRaces(storedRaces)
+    } else {
+      console.log("CLOG !storedRaces. fetchRaces instead")
+      fetchRaces();
+    }
+
     fetchNewsArticles();
 
   }, [season]);
@@ -87,16 +96,14 @@ function App() {
     }
   };
 
-  const fetchRaceResults = async () => {
+  const fetchRaces = async () => {
 
     try {
       const races = await getRaces();
       const raceResults = await getResults(currentSeason, currentSeasonRounds);
-      console.log("rounds here: ", currentSeasonRounds);
+      setRaces(races);
+      localStorage.setItem(`Races_${currentSeason || 2024}`, JSON.stringify(races));
 
-      const cleanedRaceData = await races.map((race, index) => {
-        console.log("RACE: ", race)
-      })
     } catch (error) {
       console.error("Error fetching race results: ", error);
     }
@@ -191,7 +198,7 @@ function App() {
           path="/" 
           element={
             <Home 
-              fetchRaceResults={fetchRaceResults}
+              fetchRaces={fetchRaces}
               chooseSeason={chooseSeason} 
               seasons={seasons} 
               season={season}
