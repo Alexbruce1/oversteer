@@ -72,10 +72,8 @@ function App() {
     }
 
     if (storedRaces) {
-      console.log("CLOG storedRaces: ", storedRaces)
       setRaces(storedRaces)
     } else {
-      console.log("CLOG !storedRaces. fetchRaces instead")
       fetchRaces();
     }
 
@@ -198,7 +196,6 @@ function App() {
           path="/" 
           element={
             <Home 
-              fetchRaces={fetchRaces}
               chooseSeason={chooseSeason} 
               seasons={seasons} 
               season={season}
@@ -219,7 +216,9 @@ function App() {
         />
         <Route 
           path="/races" 
-          element={<Races />} 
+          element={<Races 
+            races={races}
+            fetchRaces={fetchRaces} />} 
         />
         <Route 
           path="/teams" 
@@ -230,7 +229,7 @@ function App() {
             season={season}/>} 
         />
         <Route path="/driver/:name" element={<DriverInfo />} />
-        {/* <Route path="/team/:name" element={<DriverInfo />} /> */}
+        <Route path="/team/:name" element={<DriverInfo />} />
       </Routes>
     </div>
   );
