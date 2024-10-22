@@ -19,7 +19,6 @@ function Teams({ getStandings, standings, teamData }) {
     <div className="Teams">
       <div className="team-card-container card-container">
         {standings.length && standings.map(team => {
-          console.log("rendered thing: ", team.Constructor.name, teamImages.find(i => i.name.includes(team.Constructor.name)))
           return (
             <DriverCard 
               key={team.Constructor.constructorId}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, json } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDriverImage, getStandings, getNews, getConstructorStandings, getTeamImages } from './api';
+import { getDriverImage, getStandings, getNews, getConstructorStandings, getTeamImages, getRaces, getResults } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
@@ -17,6 +17,8 @@ function App() {
   const [teamStandings, setTeamStandings] = useState({});
   const [teamData, setTeamData] = useState({});
   const [currentSeason, setCurrentSeason] = useState();
+  const [currentSeasonRounds, setCurrentSeasonRounds] = useState();
+  const [raceResults, setRaceResults] = useState();
   const [seasons, setSeasons] = useState([]);
   const [season, setSeason] = useState();
   const [driverImages, setDriverImages] = useState([]);
@@ -73,10 +75,8 @@ function App() {
   }, [season]);
 
   const fetchTeamData = async () => {
-    console.log("fetchTeamData called")
     try {
         const teamImages = await getTeamImages();
-        console.log("TEAM IMAGES: ", teamImages)
         if (teamImages) {
             setTeamData(teamImages);
             localStorage.setItem("TeamData", JSON.stringify(teamImages));
@@ -85,15 +85,34 @@ function App() {
     } catch (error) {
         console.error('Error fetching team data: ', error);
     }
-};
+  };
+
+  const fetchRaceResults = async () => {
+
+    try {
+      const races = await getRaces();
+      const raceResults = await getResults(currentSeason, currentSeasonRounds);
+      console.log("rounds here: ", currentSeasonRounds);
+
+      const cleanedRaceData = await races.map((race, index) => {
+        console.log("RACE: ", race)
+      })
+    } catch (error) {
+      console.error("Error fetching race results: ", error);
+    }
+  }
 
   const fetchStandings = async (season) => {
     try {
       const standingsData = await getStandings(season);
+      const rounds = standingsData.total;
       const cleanedStandingsData = standingsData.StandingsTable.StandingsLists[0].DriverStandings;
+
       localStorage.setItem(`Standings_${season}`, JSON.stringify(cleanedStandingsData));
+      localStorage.setItem(`Rounds_${season}`, JSON.stringify(rounds));
       localStorage.setItem(`Standings_${season}_timestamp`, Date.now());
       setStandings(cleanedStandingsData);
+      setCurrentSeasonRounds(rounds);
 
       const imagePromises = cleanedStandingsData.map(async (driver) => {
         const fullName = driver.Driver.familyName === "Sainz"
@@ -172,6 +191,7 @@ function App() {
           path="/" 
           element={
             <Home 
+              fetchRaceResults={fetchRaceResults}
               chooseSeason={chooseSeason} 
               seasons={seasons} 
               season={season}
