@@ -17,6 +17,17 @@ const apiClient = axios.create({
 
 export const getStandings = async (year) => {
   try {
+    const response = await apiClient.get(`/${year}/results`);
+
+    return response.data.MRData;
+  } catch (error) {
+    console.error('Error fetching drivers:', error);
+    throw error;
+  }
+};
+
+export const getResults = async ({year = 2024}) => {
+  try {
     const response = await apiClient.get(`/${year}/driverstandings`);
 
     return response.data.MRData;
