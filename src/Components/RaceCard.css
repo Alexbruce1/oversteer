@@ -12,15 +12,15 @@
 .race-card-left-section {
   padding: 20px;
   border-radius: 10px;
-  flex-basis: calc(40% - 10px);
+  flex-basis: calc(35% - 10px);
 }
 
 .race-card-right-section {
   padding: 20px;
   border-radius: 10px;
-  flex-basis: calc(60% - 10px);
+  flex-basis: calc(65% - 10px);
+  align-items: center;
 }
-
 
 .race-card-left-section {
   text-align: start;
@@ -65,7 +65,7 @@ border-bottom: 1px solid #aaa;
 }
 
 .card-right-section-list p {
-  margin: 0;
+  margin: 5px 0;
   line-height: 1.4;
 }
 
@@ -75,7 +75,9 @@ border-bottom: 1px solid #aaa;
   justify-content: space-between;
 }
 
-.card-results-name {}
+.sprint {
+  color: yellow;
+}
 
 .card-results-time {
   font-weight: 800;

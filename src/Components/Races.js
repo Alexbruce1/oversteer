@@ -38,6 +38,9 @@ function Races ({ races, fetchRaces }) {
               circuit={race.Circuit.circuitName} 
               roundsPerSeason={races.length} 
               results={raceResults && raceResults[index]}
+              firstPractice={race.FirstPractice}
+              quali={race.Qualifying}
+              sprint={race.Sprint && race.Sprint}
             />
           ))
         ) : (
