@@ -125,7 +125,6 @@ export const getRaceTrackImage = async (trackName) => {
     
     const pageId = Object.keys(pages)[0];
     const trackImage = pages[pageId].thumbnail ? pages[pageId].thumbnail.source : null;
-    console.log("TRACK IMAGE", trackImage)
     return trackImage;
   } catch (error) {
     console.error(`Error fetching image for ${trackName}: `, error);

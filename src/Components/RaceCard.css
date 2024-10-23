@@ -9,12 +9,18 @@
   justify-content: space-between;
 }
 
-.race-card-left-section,
+.race-card-left-section {
+  padding: 20px;
+  border-radius: 10px;
+  flex-basis: calc(40% - 10px);
+}
+
 .race-card-right-section {
   padding: 20px;
   border-radius: 10px;
-  flex-basis: calc(45% - 10px);
+  flex-basis: calc(60% - 10px);
 }
+
 
 .race-card-left-section {
   text-align: start;
@@ -58,6 +64,19 @@ margin: 0;
 border-bottom: 1px solid #aaa;
 }
 
+.card-right-section-list p {
+  margin: 0;
+  line-height: 1.4;
+}
+
 .card-right-section-list {
   border-bottom: 1px solid #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-results-name {}
+
+.card-results-time {
+  font-weight: 800;
 }

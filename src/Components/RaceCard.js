@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { getCountryFlag, getRaceTrackImage } from "../api";
 import "./RaceCard.css";
 
-function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, circuit }) {
+function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, circuit, roundsPerSeason, results }) {
   const [formattedRaceDate, setFormattedRaceDate] = useState(date);
   const [formattedDateRange, setFormattedDateRange] = useState(startDate);
   const [flagUrl, setFlagUrl] = useState(startDate);
   const [trackImage, setTrackImage] = useState("");
+  const [raceIsOver, setRaceIsOver] = useState(false);
 
   useEffect(() => {
     let practiceDate = new Date(startDate);
@@ -28,18 +29,24 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
       ]
     }
 
+    // Set race as over if results exist and are valid
+    if (results && results.Results && results.Results.length > 0) {
+      setRaceIsOver(true);
+      console.log(`Results for ${raceName}:`, results);
+    }
+
     setFormattedRaceDate(raceDate.toLocaleDateString(undefined, options));
     setFormattedDateRange(dateRange);
 
     location.country === "UK" ? getCountryFlag("United Kingdom").then((url) => setFlagUrl(url))
-    : getCountryFlag(location.country).then((url) => setFlagUrl(url))
+    : getCountryFlag(location.country).then((url) => setFlagUrl(url));
 
     getRaceTrackImage(circuit).then((url) => {
       if (url) {
         setTrackImage(url);
       }
     });
-  }, [date, startDate, location.country, circuit]);
+  }, [date, startDate, location.country, circuit, results, raceName]);
 
   return (
     <div className="race-card">
@@ -57,17 +64,39 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
         {trackImage && <img src={trackImage} className="track-image"/>}
         {!trackImage && <img src={flagUrl} className="flag-image"/>}
       </div>
-      <div className="race-card-right-section">
-        <h3 className="card-right-section-header">Results:</h3>
-        <p className="card-right-section-list card-list-1">Charles Leclerc</p>
-        <p className="card-right-section-list card-list-2">Carlos Sainz Jr.</p>
-        <p className="card-right-section-list card-list-3">Max Verstappen</p>
-        {/* <p className="race-card-race-round">Round {round}</p> */}
-        {/* <p className="race-card-race-date">{formattedRaceDate}</p> */}
-        {/* <p className="race-card-circuit">{circuit}</p> */}
-        {/* <p className="race-card-city">locality: {location.locality}</p> */}
-        {/* <p className="race-card-city">country: {location.country}</p> */}
-      </div>
+      
+      {raceIsOver && results && results.Results && (
+        <div className="race-card-right-section">
+          <h3 className="card-right-section-header">Results:</h3>
+          <div className="card-right-section-list card-list-1">
+            <p className="card-results-name">
+              1. {results.Results[0].Driver.familyName}
+            </p>
+            <p className="card-results-name">
+              {results.Results[0].Constructor.name}
+            </p> 
+            <p className="card-results-time">{results.Results[0].Time.time}</p>
+          </div>
+          <div className="card-right-section-list card-list-2">
+            <p className="card-results-name">
+              2. {results.Results[1].Driver.familyName}
+            </p>
+            <p className="card-results-name">
+              {results.Results[1].Constructor.name}
+            </p> 
+            <p className="card-results-time">{results.Results[1].Time.time}</p>
+          </div>
+          <div className="card-right-section-list card-list-3">
+            <p className="card-results-name">
+              3. {results.Results[2].Driver.familyName}
+            </p>
+            <p className="card-results-name">
+              {results.Results[2].Constructor.name}
+            </p> 
+            <p className="card-results-time">{results.Results[2].Time.time}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
