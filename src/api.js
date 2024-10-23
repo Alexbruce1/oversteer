@@ -38,12 +38,12 @@ export const getRaces = async (year = 2024) => {
 export const getResults = async (year = 2024, rounds) => {
   let currentRound = 0;
   let results = [];
+
   // search for race results BY RACE. Fetching them all in one only returns the first two results. This gets everything for the season
   while (currentRound < rounds) {
     currentRound ++;
     try {
       const response = await apiClient.get(`/${year}/${currentRound}/results`);
-      console.log("fuck", response.data)
       results.push(response.data.MRData.RaceTable.Races[0]);
     } catch (error) {
       console.error("Error fetching results: ", error);
@@ -104,4 +104,30 @@ export const getTeamImages = async () => {
     console.error("Error fetching team data: ", error)
     return null;
   }
-}
+};
+
+export const getCountryFlag = async (country) => {
+  try {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+    const countryData = await response.json();
+    const flagUrl = countryData[0].flags.svg;
+    return flagUrl;
+  } catch (error) {
+    console.error(`Error fetching a flag for ${country}: `, error)
+  }
+};
+
+export const getRaceTrackImage = async (trackName) => {
+  try {
+    const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${encodeURIComponent(trackName)}&pithumbsize=500&origin=*`);
+    const data = await response.json();
+    const pages = data.query.pages;
+    
+    const pageId = Object.keys(pages)[0];
+    const trackImage = pages[pageId].thumbnail ? pages[pageId].thumbnail.source : null;
+    return trackImage;
+  } catch (error) {
+    console.error(`Error fetching image for ${trackName}: `, error);
+    return null;
+  }
+};

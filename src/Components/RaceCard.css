@@ -1,0 +1,84 @@
+.race-card {
+  flex-basis: calc(50% - 10px);
+  background: var(--card-background-gradient-horizontal);
+  box-sizing: border-box;
+  background-color: #666;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.race-card-left-section {
+  padding: 20px;
+  border-radius: 10px;
+  flex-basis: calc(35% - 10px);
+}
+
+.race-card-right-section {
+  padding: 20px;
+  border-radius: 10px;
+  flex-basis: calc(65% - 10px);
+  align-items: center;
+}
+
+.race-card-left-section {
+  text-align: start;
+}
+
+.race-card-race-name {
+  margin: 0;
+  text-align: left;
+  font-family: var(--racing-font);
+  font-weight: 300;
+}
+
+.race-card-location {
+  margin: 0;
+}
+
+.race-card-race-date {
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+}
+
+.flag-image,
+.track-image {
+  height: 50px;
+  margin: 10px auto;
+}
+
+.track-image {
+  filter: invert(100%);
+}
+
+.race-card-right-section {
+  text-align: left;
+  font-style: italic;
+  flex-basis: calc(50% - 10px);
+}
+
+.card-right-section-header {
+margin: 0;
+border-bottom: 1px solid #aaa;
+}
+
+.card-right-section-list p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.card-right-section-list {
+  border-bottom: 1px solid #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sprint {
+  color: yellow;
+}
+
+.card-results-time {
+  font-weight: 800;
+}

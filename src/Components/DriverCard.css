@@ -1,6 +1,5 @@
 .driver-card {
-  /* background-color: #eee; */
-  background: linear-gradient(#444, #222);
+  background: var(--card-background-gradient);
   border-radius: 10px;
   margin: 10px 0;
   width: 30%;

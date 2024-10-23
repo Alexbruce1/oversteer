@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './Home.css';
 import DriverCard from "./DriverCard";
 
-function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles, loadingArticles, articlesError, fetchRaceResults }) {
+function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles, loadingArticles, articlesError }) {
   const [topDrivers, setTopDrivers] = useState([]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
         })}
       </div>
       <div className="home-form-container home-section-container">
-        <form className="home-form" onClick={fetchRaceResults} onSubmit={handleSubmit}>
+        <form className="home-form" onSubmit={handleSubmit}>
           <select 
             className="seasons-dropdown" 
             value={season}
