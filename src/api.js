@@ -104,7 +104,7 @@ export const getTeamImages = async () => {
     console.error("Error fetching team data: ", error)
     return null;
   }
-}
+};
 
 export const getCountryFlag = async (country) => {
   try {
@@ -115,4 +115,20 @@ export const getCountryFlag = async (country) => {
   } catch (error) {
     console.error(`Error fetching a flag for ${country}: `, error)
   }
-}
+};
+
+export const getRaceTrackImage = async (trackName) => {
+  try {
+    const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${encodeURIComponent(trackName)}&pithumbsize=500&origin=*`);
+    const data = await response.json();
+    const pages = data.query.pages;
+    
+    const pageId = Object.keys(pages)[0];
+    const trackImage = pages[pageId].thumbnail ? pages[pageId].thumbnail.source : null;
+    console.log("TRACK IMAGE", trackImage)
+    return trackImage;
+  } catch (error) {
+    console.error(`Error fetching image for ${trackName}: `, error);
+    return null;
+  }
+};

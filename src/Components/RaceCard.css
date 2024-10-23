@@ -4,7 +4,7 @@
   box-sizing: border-box;
   background-color: #666;
   border-radius: 10px;
-  color: #eee;
+  color: #fff;
   display: flex;
   justify-content: space-between;
 }
@@ -37,11 +37,27 @@
   margin: 0;
 }
 
-.flag-image {
+.flag-image,
+.track-image {
   height: 50px;
   margin: 10px auto;
 }
 
+.track-image {
+  filter: invert(100%);
+}
+
 .race-card-right-section {
+  text-align: left;
+  font-style: italic;
   flex-basis: calc(50% - 10px);
+}
+
+.card-right-section-header {
+margin: 0;
+border-bottom: 1px solid #aaa;
+}
+
+.card-right-section-list {
+  border-bottom: 1px solid #666;
 }
