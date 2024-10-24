@@ -34,9 +34,7 @@ function DriverInfo({ driverStandings }) {
         age--;
       }
     
-      setDriverAge(age)
-
-      setDriverTeam(info.strTeam);
+      setDriverAge(age);
       setDriverDOB(DOB.toLocaleDateString(undefined, options));
       setDriverNumber(info.strNumber);
       setDriverNationality(info.strNationality);
@@ -44,13 +42,20 @@ function DriverInfo({ driverStandings }) {
       setDriverRender(info.strRender);
       setDriverCutout(info.strCutout);
     });
-  }, [name]);
 
+    if (!driverCutout) {
+      const image = localStorage.getItem(`${driverFirstName}_${driverLastName}_images`);
+      setDriverCutout(image);
+    }
+  }, [name]);
+  
   useEffect(() => {
     let splitName = name.split("_")
     const propData = driverStandings.find(driver => driver.Driver.familyName === splitName[1]);
-
+    // console.log(propData)
+    
     if (propData) {
+      setDriverTeam(propData.Constructors[0].name);
       setDriverPoints(propData.points);
       setDriverPosition(propData.position);
       setDriverCode(propData.Driver.code);

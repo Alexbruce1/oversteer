@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./DriverCard.css"
 import { Link, useLocation } from "react-router-dom";
 
 function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, driverImages, driverFirst, driverLast, driverTeam, driverPoints, teamPosition, teamPoints, teamName, teamWins, teamNationality }) {
   const location = useLocation();
+  useEffect(() => {
+    localStorage.setItem(`${driverFirst}_${driverLast}_images`, JSON.stringify(driverImages))
+  }, [driverImages])
 
   return (
     <div className="driver-card">

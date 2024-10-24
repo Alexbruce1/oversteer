@@ -25,10 +25,10 @@
 
 .driver-info-number {
   background-color: var(--f1-red);
-  width: fit-content;
+  width: 60px;
   border-radius: 8px;
   padding: 0 5px;
-  text-align: left;
+  text-align: center;
   position: relative;
   bottom: 310px;
   color: #222;
