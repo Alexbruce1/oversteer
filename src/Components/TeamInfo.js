@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import "./DriverInfo.css";
+import "./TeamInfo.css";
 
-function DriverInfo() {
+function TeamInfo() {
   const { name } = useParams();
-
+  
   return (
     <div>
       {decodeURIComponent(name)}
@@ -13,4 +13,4 @@ function DriverInfo() {
   )
 }
 
-export default DriverInfo;
+export default TeamInfo;
