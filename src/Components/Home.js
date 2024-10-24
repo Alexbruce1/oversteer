@@ -46,7 +46,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
       </div>
       <div className="home-form-container home-section-container">
         <form className="home-form" onSubmit={handleSubmit}>
-          <select 
+          {/* <select 
             className="seasons-dropdown" 
             value={season}
             onChange={(e) => {chooseSeason(e.currentTarget.value)}}>
@@ -61,7 +61,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
             )}
           </select>
           <input className="form-submit-button" type="submit" value="Find drivers" />
-          <input className="form-submit-button" type="submit" value="Find teams" />
+          <input className="form-submit-button" type="submit" value="Find teams" /> */}
         </form>
       </div>
         {loadingArticles && <p>Loading articles...</p>}

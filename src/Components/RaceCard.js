@@ -99,7 +99,7 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
       
       {raceIsOver && results && results.Results && (
         <div className="race-card-right-section">
-          <h3 className="card-right-section-header">Results:</h3>
+          <h3 className="card-right-section-header">Results</h3>
           <div className="card-right-section-list card-list-1">
             <p className="card-results-name">
               1. {results.Results[0].Driver.familyName}
@@ -130,7 +130,7 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
         </div>
       )}
       {!raceIsOver && <div className="race-card-right-section">
-        <h3 className="card-right-section-header">Schedule:</h3>
+        <h3 className="card-right-section-header">Schedule</h3>
           <div className="card-right-section-list card-list-1">
             <p className="card-results-name">First Practice</p>
             <p className="card-results-time">{formattedFP1Date}, {formattedFP1Time}</p>

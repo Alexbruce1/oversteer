@@ -1,8 +1,9 @@
 .card-container {
   width: 95%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 30px;
+  /* justify-content: space-between; */
 }
