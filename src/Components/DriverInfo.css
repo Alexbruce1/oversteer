@@ -1,0 +1,105 @@
+.driver-info {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.driver-info-header {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--card-background-gradient-horizontal);
+  border-radius: 20px;
+  color: #eee;
+}
+
+.driver-info-cutout {
+  aspect-ratio: 1 / 1;
+  height: 290px;
+  width: 290px;
+}
+
+.driver-info-number {
+  background-color: var(--f1-red);
+  width: fit-content;
+  border-radius: 8px;
+  padding: 0 5px;
+  text-align: left;
+  position: relative;
+  bottom: 310px;
+  color: #222;
+  font-size: 50px;
+  font-family: var(--racing-font);
+  font-weight: 100;
+}
+
+.driver-info-header-details {
+  text-align: left;
+  width: 60%;
+  padding: 20px;
+  /* background-color: darkcyan; */
+}
+
+.driver-info-header-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  margin-bottom: 10px;
+  /* background-color: blue; */
+}
+
+.driver-info-flag {
+  max-height: 40px;
+  border-radius: 8px;
+}
+
+.driver-info-name {
+  margin: 0 20px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--f1-red);
+  /* letter-spacing: 1px; */
+}
+
+.driver-info-name strong {
+  color: #eee;
+  font-weight: 800;
+}
+
+.driver-info-team {
+  font-weight: 900;
+}
+
+.driver-info-header-second-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  margin: 10px 0;
+  /* background-color: darkgreen; */
+}
+
+.driver-info-header-second-line strong {
+  font-weight: 800;
+}
+
+.driver-info-header-last-line {
+  display: flex;
+  margin: 0;
+  height: 150px;
+}
+
+.driver-info-description {
+  overflow: scroll;
+  scrollbar-width: thin;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 0;
+}

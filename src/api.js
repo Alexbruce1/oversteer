@@ -77,7 +77,24 @@ export const getNews = async () => {
   }
 };
 
-export const getDriverImage = async (fullName) => {
+export const getDriverInfo = async (fullName) => {
+  try {
+    const url = `${THE_SPORTS_DB_PLAYERS_URL}${fullName}`;
+    const response = await axios.get(url);
+    const player = response.data.player ? response.data.player[0] : null;
+
+    if (player) {
+      return player;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching driver info: ", error);
+    return null;
+  }
+};
+
+export const getDriverCutout = async (fullName) => {
   try {
     const url = `${THE_SPORTS_DB_PLAYERS_URL}${fullName}`;
     const response = await axios.get(url);

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, json } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
-import { getDriverImage, getStandings, getNews, getConstructorStandings, getTeamImages, getRaces, getResults } from './api';
+import { getDriverCutout, getStandings, getNews, getConstructorStandings, getTeamImages, getRaces, getResults } from './api';
 import Header from './Components/Header';
 import Drivers from './Components/Drivers';
 import DriverInfo from './Components/DriverInfo';
+import TeamInfo from './Components/TeamInfo';
 import Home from './Components/Home';
 import Teams from './Components/Teams';
 import Races from './Components/Races';
@@ -123,7 +124,7 @@ function App() {
         const fullName = driver.Driver.familyName === "Sainz"
           ? `${driver.Driver.givenName}_${driver.Driver.familyName}_jr`
           : `${driver.Driver.givenName}_${driver.Driver.familyName}`;
-        const imageUrl = await getDriverImage(fullName);
+        const imageUrl = await getDriverCutout(fullName);
         return { driverId: driver.Driver.driverId, imageUrl };
       });
 
@@ -228,8 +229,8 @@ function App() {
             teamData={teamData}
             season={season}/>} 
         />
-        <Route path="/driver/:name" element={<DriverInfo />} />
-        <Route path="/team/:name" element={<DriverInfo />} />
+        <Route path="/driver/:name" element={<DriverInfo driverStandings={standings} />} />
+        <Route path="/team/:name" element={<TeamInfo />} />
       </Routes>
     </div>
   );
