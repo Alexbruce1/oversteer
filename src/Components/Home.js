@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Home.css';
 import DriverCard from "./DriverCard";
+import AI from "./AI";
 
 function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles, loadingArticles, articlesError }) {
   const [topDrivers, setTopDrivers] = useState([]);
@@ -19,6 +20,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
 
   return (
     <div className="Home">
+      <AI />
       <h1 className="home-header">{season} F1 Standings</h1>
       <div className="top-3-container home-section-container">
         {topDrivers.map(driver => {

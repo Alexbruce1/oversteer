@@ -5,7 +5,8 @@ let newsPageSize = "20";
 let newsLanguage = "en";
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
-const newsQuery = "Formula%201%20FIA"
+const openAIApiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const newsQuery = "Formula%201%20FIA";
 const JOLPI_API_BASE_URL = "https://api.jolpi.ca/ergast/f1/";
 const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?q=${newsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
 const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
@@ -79,7 +80,7 @@ export const getNews = async () => {
 
 export const getDriverInfo = async (fullName) => {
   let name = fullName;
-  
+
   if (fullName.includes("Sainz")) {
     name = `${fullName}%20JR`
   }
@@ -152,5 +153,31 @@ export const getRaceTrackImage = async (trackName) => {
   } catch (error) {
     console.error(`Error fetching image for ${trackName}: `, error);
     return null;
+  }
+};
+
+export const getOpenAIResponse = async (prompt) => {
+  try {
+    const response = await axios.post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',  // Updated model
+        messages: [
+          { role: 'system', content: 'You are an expert on Formula 1.' },  // Optional system message for context
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 150,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${openAIApiKey}`, // Correct API key from .env
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.error('Error fetching OpenAI data:', error);
+    throw error; // This will be caught in the AI component and displayed as an error
   }
 };
