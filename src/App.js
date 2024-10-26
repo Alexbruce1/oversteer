@@ -37,61 +37,61 @@ function App() {
     const storedSeason = JSON.parse(localStorage.getItem("Season")) || thisYear;
     const storedRaces = JSON.parse(localStorage.getItem(`Races_${storedSeason}`));
     setSeason(storedSeason);
-
+    
     const checkDataAge = (key) => {
       const storedItem = JSON.parse(localStorage.getItem(key));
       const timestamp = localStorage.getItem(`${key}_timestamp`);
       const isOld = timestamp ? (Date.now() - timestamp) > (24 * 60 * 60 * 1000) : true;
       return isOld ? null : storedItem;
     };
-
+    
     const storedStandings = checkDataAge(`Standings_${storedSeason}`);
     const storedImages = checkDataAge(`Images_${storedSeason}`);
     const storedConstructorStandings = checkDataAge("ConstructorStandings");
     const storedTeamData = checkDataAge("TeamData");
-
+    
     if (storedStandings) {
       setStandings(storedStandings);
     } else {
       fetchStandings(storedSeason);
     }
-
+    
     if (storedImages) {
       setDriverImages(storedImages);
     }
-
+    
     if (storedConstructorStandings) {
       setTeamStandings(storedConstructorStandings);
     } else {
       fetchTeamStandings();
     }
-
+    
     if (storedTeamData) {
       setTeamData(storedTeamData);
     } else {
       fetchTeamData();
     }
-
+    
     if (storedRaces) {
       setRaces(storedRaces)
     } else {
       fetchRaces();
     }
-
+    
     fetchNewsArticles();
-
+    
   }, [season]);
-
+  
   const fetchTeamData = async () => {
     try {
-        const teamImages = await getTeamImages();
-        if (teamImages) {
-            setTeamData(teamImages);
-            localStorage.setItem("TeamData", JSON.stringify(teamImages));
-            localStorage.setItem("TeamData_timestamp", Date.now());
-        }
+      const teamImages = await getTeamImages();
+      if (teamImages) {
+        setTeamData(teamImages);
+        localStorage.setItem("TeamData", JSON.stringify(teamImages));
+        localStorage.setItem("TeamData_timestamp", Date.now());
+      }
     } catch (error) {
-        console.error('Error fetching team data: ', error);
+      console.error('Error fetching team data: ', error);
     }
   };
 
