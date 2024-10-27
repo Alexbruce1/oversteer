@@ -20,7 +20,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
 
   return (
     <div className="Home">
-      <AI />
+      {/* <AI /> */}
       <h1 className="home-header">{season} F1 Standings</h1>
       <div className="top-3-container home-section-container">
         {topDrivers.map(driver => {
