@@ -12,7 +12,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
     });
 
     setTopDrivers(topThreeDrivers)
-  }, drivers)
+  }, [drivers])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -80,14 +80,14 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
                 target="_blank" 
                 key={index}>
                 <div className="article-image-container">
-                  <img className="article-image" src={article.urlToImage} />
+                  <img alt={article.title} className="article-image" src={article.urlToImage} />
                 </div>
                 <h2 
                   className="article-title">
                   {article.title}
                 </h2>
                 <h3 className="article-source">{article.source.name}</h3>
-                <p className="article-description">{new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric'}).format(new Date(article.publishedAt)).replace(/\,/g, ' ')}: {article.description}</p>
+                <p className="article-description">{new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric'}).format(new Date(article.publishedAt)).replace(/,/g, ' ')}: {article.description}</p>
               </a>
             ))}
           </div>
