@@ -4,7 +4,12 @@
   margin: 0;
   width: 30%;
   text-align: left;
-  padding: 10px;
+}
+
+.driver-card-bg-image {
+  padding: 0 ;
+  margin-top: 20px;
+  border-radius: 20px;
 }
 
 .driver-card-link {
@@ -21,9 +26,8 @@
   font-family: var(--racing-font);
   display: flex;
   justify-content: space-between;
-  padding: 0 15px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #666;
+  padding: 0 20px;
+  margin-bottom: 180px;
 }
 
 .driver-number,
@@ -35,16 +39,11 @@
 
 .driver-code,
 .team-points {
+  font-size: 35px;
   font-style: italic;
   font-weight: 100;
   display: flex;
   align-items: center;
-}
-
-.driver-image {
-  width: 60%;
-  display: block;
-  margin: 0 auto;
 }
 
 .no-driver-image {
@@ -52,8 +51,7 @@
   color: #eee;
   font-family: var(--racing-font);
   font-size: 20px;
-  height: 100%;
-  /* background-color: #ddd; */
+  height: 180px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -65,10 +63,20 @@
   text-decoration: none;
 }
 
+.driver-lower-info {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #222 70%);
+  padding: 30px 20px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .driver-name {
+  padding: 5px 0;
   font-style: italic;
   font-weight: 300;
-  color: var(--f1-red);
+  border-radius: 5px;
+  color: #ddd;
 }
 
 .team-name {
@@ -79,6 +87,12 @@
 .driver-last-name {
   font-weight: 700;
   color: #eee;
+}
+
+.driver-card-bottom-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .driver-points,

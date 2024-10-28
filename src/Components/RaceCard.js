@@ -48,10 +48,6 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
       console.log(`Results for ${raceName}:`, results);
     }
 
-    // console.log("FP:", FPDate)
-    // console.log("quali:", qualiDate)
-    // console.log("sprint:", sprintDate)
-
     setFormattedFP1Date(FPDate.toLocaleDateString(undefined, options));
     setFormattedQualiDate(qualiDate.toLocaleDateString(undefined, options));
     setFormattedRaceDate(raceDate.toLocaleDateString(undefined, options));
@@ -85,7 +81,7 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
       <div 
         className="race-card-left-section"
         style={{ 
-          backgroundImage: `linear-gradient(to left, #333, rgba(0, 0, 0, 0.8) 90%), url(${flagUrl})`,
+          backgroundImage: `linear-gradient(to left, #222, rgba(0, 0, 0, 0.8) 90%), url(${flagUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'top left',
           backgroundRepeat: 'no-repeat'
@@ -99,7 +95,7 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
       
       {raceIsOver && results && results.Results && (
         <div className="race-card-right-section">
-          <h3 className="card-right-section-header">Results</h3>
+          <h3 className="card-right-section-header">Race Results</h3>
           <div className="card-right-section-list card-list-1">
             <p className="card-results-name">
               1. {results.Results[0].Driver.familyName}

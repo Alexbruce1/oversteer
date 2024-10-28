@@ -1,8 +1,8 @@
 .race-card {
   flex-basis: calc(50% - 10px);
-  background: var(--card-background-gradient-horizontal);
+  /* background: var(--card-background-gradient-horizontal); */
   box-sizing: border-box;
-  background-color: #666;
+  background-color: #222;
   border-radius: 10px;
   color: #fff;
   display: flex;
