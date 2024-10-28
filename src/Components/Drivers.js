@@ -9,6 +9,7 @@ function Drivers({ drivers, driverImages, season }) {
       <div className="driver-card-container card-container">
         {drivers.map(driver => (
           <DriverCard 
+            key={driver.Driver.code}
             driverKey={driver.Driver.code} 
             driverNumber={driver.Driver.permanentNumber}
             driverCode={driver.Driver.code}

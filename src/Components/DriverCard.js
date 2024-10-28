@@ -10,15 +10,15 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
 
   return (
     <div className="driver-card">
-      <div 
-        className="driver-card-bg-image"    
-        style={{ 
-          backgroundImage: `linear-gradient(to bottom, #fff, url(${driverImages})`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'bottom center',
-          backgroundRepeat: 'no-repeat'
-        }}>
-        {(location.pathname === '/drivers' || location.pathname === '/') && (
+      {(location.pathname === '/drivers' || location.pathname === '/') && (
+        <div 
+          className="driver-card-bg-image"    
+          style={{ 
+            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(5, 5, 5, 0.4)), url(${driverImages})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'top center',
+            backgroundRepeat: 'no-repeat'
+          }}>
           <Link 
             to={`/driver/${encodeURIComponent(driverFirst)}_${encodeURIComponent(driverLast)}`}
             className="driver-card-link"
@@ -31,19 +31,12 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
               className="driver-wiki-link" 
               href={driverWikiLink}
               target="_blank">
-                <div className="driver-image"></div>
-              {/* { driverImages ? (
-                <img 
-                  src={driverImages}
-                  className="driver-image"
-                  alt={`${driverFirst} ${driverLast} image`}
-                />
-              ) : (
+              { !driverImages && (
                 <div className="no-driver-image">no image available</div>
-              )} */}
+              )}
               <div className="driver-lower-info">
                 <h2 className="driver-name driver-first-name">
-                  {driverFirst}  <strong className="driver-name driver-last-name">{driverLast}</strong>
+                  {driverFirst}<strong className="driver-name driver-last-name">{driverLast}</strong>
                 </h2>
                 <div className="driver-card-bottom-row">
                   <div className="driver-team">{driverTeam}</div>
@@ -52,8 +45,10 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
               </div>
             </div>
           </Link>
+        </div>
         )}
-        {(location.pathname === '/teams') && (
+      {(location.pathname === '/teams') && (
+        <div>
           <Link 
             to={`/team/${encodeURIComponent(teamName)}`}
             className="driver-card-link"
@@ -80,8 +75,8 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             <div className="team-wins">{teamWins}</div>
             <div className="team-nationality">{teamNationality}</div>
           </Link>
-        )}
-      </div>
+        // </div>
+      )}
     </div>
   )
 }
