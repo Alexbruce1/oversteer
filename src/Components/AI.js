@@ -15,7 +15,6 @@ function AI() {
     setError(null);
 
     const f1Data = JSON.parse(localStorage.getItem(`Standings_2024`));
-    console.log(f1Data)
     const prompt = `Here"s the current F1 data: ${f1Data}. Can you summarize the standings and key highlights from the season so far?`;
     setPrompt(prompt);
 
@@ -23,7 +22,6 @@ function AI() {
       const openAIResponse = await getOpenAIResponse(prompt);
       
       if (openAIResponse) {
-        console.log(openAIResponse);
         setResponse(openAIResponse);
       } else {
         setError("Error: OpenAI returned no response.");

@@ -45,7 +45,6 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
     // Set race as over if results exist and are valid
     if (results && results.Results && results.Results.length > 0) {
       setRaceIsOver(true);
-      console.log(`Results for ${raceName}:`, results);
     }
 
     setFormattedFP1Date(FPDate.toLocaleDateString(undefined, options));
