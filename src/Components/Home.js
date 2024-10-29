@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './Home.css';
+import "./Home.css";
 import DriverCard from "./DriverCard";
 import AI from "./AI";
 
@@ -87,7 +87,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
                   {article.title}
                 </h2>
                 <h3 className="article-source">{article.source.name}</h3>
-                <p className="article-description">{new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric'}).format(new Date(article.publishedAt)).replace(/,/g, ' ')}: {article.description}</p>
+                <p className="article-description">{new Intl.DateTimeFormat("en-US", {month: "short", day: "numeric"}).format(new Date(article.publishedAt)).replace(/,/g, " ")}: {article.description}</p>
               </a>
             ))}
           </div>

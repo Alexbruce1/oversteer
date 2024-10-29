@@ -159,25 +159,25 @@ export const getRaceTrackImage = async (trackName) => {
 export const getOpenAIResponse = async (prompt) => {
   try {
     const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
+      "https://api.openai.com/v1/chat/completions",
       {
-        model: 'gpt-3.5-turbo',  // Updated model
+        model: "gpt-3.5-turbo",  // Updated model
         messages: [
-          { role: 'system', content: 'You are an expert on Formula 1.' },  // Optional system message for context
-          { role: 'user', content: prompt }
+          { role: "system", content: "You are an expert on Formula 1." },  // Optional system message for context
+          { role: "user", content: prompt }
         ],
         max_tokens: 150,
       },
       {
         headers: {
           Authorization: `Bearer ${openAIApiKey}`, // Correct API key from .env
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }
     );
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.error('Error fetching OpenAI data:', error);
+    console.error("Error fetching OpenAI data:", error);
     throw error; // This will be caught in the AI component and displayed as an error
   }
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import helmetLogo from "../assets/helmet-preview.png";
-import './Header.css';
+import "./Header.css";
 
 function Header() {
   return (

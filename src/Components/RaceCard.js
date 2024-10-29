@@ -27,7 +27,7 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
     const options = { month: "short", day: "numeric" };
     const dateRangeFormatMD = { month: "short", day: "numeric" };
     const dateRangeFormatD = { day: "numeric" };
-    const timeFormat = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const timeFormat = { hour: "numeric", minute: "numeric", hour12: true };
     let dateRange = [];
 
     if (practiceDate.getMonth() === raceDate.getMonth()) {
@@ -82,9 +82,9 @@ function RaceCard ({ raceName, date, raceTime, startDate, url, round, location, 
         className="race-card-left-section"
         style={{ 
           backgroundImage: `linear-gradient(to left, #222, rgba(0, 0, 0, 0.8) 90%), url(${flagUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'top left',
-          backgroundRepeat: 'no-repeat'
+          backgroundSize: "cover",
+          backgroundPosition: "top left",
+          backgroundRepeat: "no-repeat"
         }}>
         <h2 className="race-card-race-name">{raceName}</h2>
         <h3 className="race-card-location">{location.country}</h3>

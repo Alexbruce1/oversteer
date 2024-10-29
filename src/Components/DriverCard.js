@@ -10,14 +10,14 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
 
   return (
     <div className="driver-card">
-      {(location.pathname === '/drivers' || location.pathname === '/') && (
+      {(location.pathname === "/drivers" || location.pathname === "/") && (
         <div 
           className="driver-card-bg-image"    
           style={{ 
             backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(5, 5, 5, 0.4)), url(${driverImages})`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'top center',
-            backgroundRepeat: 'no-repeat'
+            backgroundSize: "contain",
+            backgroundPosition: "top center",
+            backgroundRepeat: "no-repeat"
           }}>
           <Link 
             to={`/driver/${encodeURIComponent(driverFirst)}_${encodeURIComponent(driverLast)}`}
@@ -47,7 +47,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
           </Link>
         </div>
         )}
-      {(location.pathname === '/teams') && (
+      {(location.pathname === "/teams") && (
         <div>
           <Link 
             to={`/team/${encodeURIComponent(teamName)}`}
