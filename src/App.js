@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, json } from 'react-router-dom';
-import 'normalize.css';
-import './App.css';
-import { getDriverCutout, getStandings, getNews, getConstructorStandings, getTeamImages, getRaces, getResults } from './api';
-import Header from './Components/Header';
-import Drivers from './Components/Drivers';
-import DriverInfo from './Components/DriverInfo';
-import TeamInfo from './Components/TeamInfo';
-import Home from './Components/Home';
-import Teams from './Components/Teams';
-import Races from './Components/Races';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, json } from "react-router-dom";
+import "normalize.css";
+import "./App.css";
+import { getDriverCutout, getStandings, getNews, getConstructorStandings, getTeamImages, getRaces, getResults } from "./api";
+import Header from "./Components/Header";
+import Drivers from "./Components/Drivers";
+import DriverInfo from "./Components/DriverInfo";
+import TeamInfo from "./Components/TeamInfo";
+import Home from "./Components/Home";
+import Teams from "./Components/Teams";
+import Races from "./Components/Races";
 
 const thisYear = new Date().getFullYear();
 
@@ -91,7 +91,7 @@ function App() {
         localStorage.setItem("TeamData_timestamp", Date.now());
       }
     } catch (error) {
-      console.error('Error fetching team data: ', error);
+      console.error("Error fetching team data: ", error);
     }
   };
 

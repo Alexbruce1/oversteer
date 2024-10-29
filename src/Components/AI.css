@@ -1,0 +1,10 @@
+.AI {
+  width: 95%;
+  max-width: 1200px;
+  background: var(--card-background-gradient-horizontal);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #eee;
+  margin: 20px auto;
+}

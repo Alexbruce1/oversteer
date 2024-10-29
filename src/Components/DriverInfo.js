@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import "./DriverInfo.css";
 import { getDriverInfo, getCountryFlag } from "../api";
 
@@ -52,7 +52,6 @@ function DriverInfo({ driverStandings }) {
   useEffect(() => {
     let splitName = name.split("_")
     const propData = driverStandings.find(driver => driver.Driver.familyName === splitName[1]);
-    // console.log(propData)
     
     if (propData) {
       setDriverTeam(propData.Constructors[0].name);
