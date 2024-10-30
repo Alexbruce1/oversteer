@@ -1,9 +1,7 @@
 import axios from "axios";
 
 let newsSortBy = "publishedAt";
-let newsPageSize = "20";
 let newsLanguage = "en";
-let mainNewsQuery = "q=Formula%201%20FIA";
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
 const openAIApiKey = process.env.REACT_APP_OPENAI_API_KEY;
@@ -66,9 +64,9 @@ export const getConstructorStandings = async (year) => {
   }
 };
 
-export const getNews = async topic => {
+export const getNews = async (topic, resultsLimit = 20) => {
   let mainNewsQuery = `q=${topic.split("_").join("%20")}`; 
-  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${resultsLimit}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
 
   try {
     const url = `${NEWS_API_BASE_URL}${path}`;
