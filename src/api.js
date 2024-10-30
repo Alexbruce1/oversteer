@@ -3,12 +3,12 @@ import axios from "axios";
 let newsSortBy = "publishedAt";
 let newsPageSize = "20";
 let newsLanguage = "en";
+let mainNewsQuery = "q=Formula%201%20FIA";
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
 const openAIApiKey = process.env.REACT_APP_OPENAI_API_KEY;
-const newsQuery = "Formula%201%20FIA";
 const JOLPI_API_BASE_URL = "https://api.jolpi.ca/ergast/f1/";
-const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?q=${newsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?`;
 const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
 const THE_SPORTS_DB_TEAMS_URL =  `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/search_all_teams.php?l=Formula%201`
 
@@ -66,9 +66,12 @@ export const getConstructorStandings = async (year) => {
   }
 };
 
-export const getNews = async () => {
+export const getNews = async topic => {
+  let mainNewsQuery = `q=${topic.split("_").join("%20")}`; 
+  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${newsPageSize}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+
   try {
-    const url = `${NEWS_API_BASE_URL}`;
+    const url = `${NEWS_API_BASE_URL}${path}`;
     const response = await axios.get(url);
     const articles = response.data.articles;
     return articles;
@@ -161,16 +164,16 @@ export const getOpenAIResponse = async (prompt) => {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-3.5-turbo",  // Updated model
+        model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: "You are an expert on Formula 1." },  // Optional system message for context
+          { role: "system", content: "You are an expert on Formula 1." },
           { role: "user", content: prompt }
         ],
         max_tokens: 150,
       },
       {
         headers: {
-          Authorization: `Bearer ${openAIApiKey}`, // Correct API key from .env
+          Authorization: `Bearer ${openAIApiKey}`,
           "Content-Type": "application/json",
         },
       }
@@ -178,6 +181,6 @@ export const getOpenAIResponse = async (prompt) => {
     return response.data.choices[0].message.content;
   } catch (error) {
     console.error("Error fetching OpenAI data:", error);
-    throw error; // This will be caught in the AI component and displayed as an error
+    throw error;
   }
 };
