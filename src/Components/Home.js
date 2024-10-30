@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import DriverCard from "./DriverCard";
+import NewsCard from "./NewsCard";
 import AI from "./AI";
 
 function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles, loadingArticles, articlesError }) {
@@ -73,22 +74,14 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
         {!loadingArticles && !articlesError && Array.isArray(articles) && articles.length > 0 ? (
           <div className="articles-container home-section-container">
             {articles.map((article, index) => (
-              <a 
-                className="article-card" 
-                href={article.url} 
-                rel="noopener noreferrer"
-                target="_blank" 
-                key={index}>
-                <div className="article-image-container">
-                  <img alt={article.title} className="article-image" src={article.urlToImage} />
-                </div>
-                <h2 
-                  className="article-title">
-                  {article.title}
-                </h2>
-                <h3 className="article-source">{article.source.name}</h3>
-                <p className="article-description">{new Intl.DateTimeFormat("en-US", {month: "short", day: "numeric"}).format(new Date(article.publishedAt)).replace(/,/g, " ")}: {article.description}</p>
-              </a>
+              <NewsCard 
+                url={article.url}
+                index={index}
+                title={article.title}
+                articleImage={article.urlToImage}
+                source={article.source.name}
+                publishedDate={article.publishedAt}
+                description={article.description} />
             ))}
           </div>
         ) : (
