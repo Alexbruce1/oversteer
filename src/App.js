@@ -162,7 +162,7 @@ function App() {
 
   const fetchNewsArticles = async () => {
     try {
-      const fetchedArticles = await getNews();
+      const fetchedArticles = await getNews("formula_1_FIA");
       setArticles(fetchedArticles);
       setLoadingArticles(false);
     } catch (error) {
