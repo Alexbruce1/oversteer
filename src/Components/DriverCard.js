@@ -75,7 +75,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             <div className="team-wins">{teamWins}</div>
             <div className="team-nationality">{teamNationality}</div>
           </Link>
-        // </div>
+        </div>
       )}
     </div>
   )
