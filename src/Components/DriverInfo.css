@@ -1,8 +1,11 @@
 .driver-info {
+  padding: 20px 0;
+}
+
+.driver-info-section {
   width: 95%;
   max-width: 1200px;
   margin: auto;
-  padding: 20px 0;
 }
 
 .driver-info-header {
@@ -41,7 +44,6 @@
   text-align: left;
   width: 60%;
   padding: 20px;
-  /* background-color: darkcyan; */
 }
 
 .driver-info-header-top-line {
@@ -50,7 +52,6 @@
   justify-content: space-between;
   height: 50px;
   margin-bottom: 10px;
-  /* background-color: blue; */
 }
 
 .driver-info-flag {
@@ -63,7 +64,6 @@
   font-style: italic;
   font-weight: 300;
   color: var(--f1-red);
-  /* letter-spacing: 1px; */
 }
 
 .driver-info-name strong {
@@ -83,7 +83,6 @@
   font-style: italic;
   line-height: 1;
   margin: 10px 0;
-  /* background-color: darkgreen; */
 }
 
 .driver-info-header-second-line strong {
@@ -102,4 +101,19 @@
   font-size: 16px;
   line-height: 1.4;
   padding: 0;
+}
+
+/* -------- NEWS SECTION ----------------- */
+
+.driver-info-news {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.driver-info-news-header {}
+
+.driver-info-articles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
 }

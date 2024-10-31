@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./DriverInfo.css";
-import { getDriverInfo, getCountryFlag } from "../api";
+import NewsCard from "./NewsCard";
+import { getDriverInfo, getCountryFlag, getNews } from "../api";
 
 function DriverInfo({ driverStandings }) {
   const { name } = useParams();
@@ -19,6 +20,7 @@ function DriverInfo({ driverStandings }) {
   const [driverPosition, setDriverPosition] = useState();
   const [driverCode, setDriverCode] = useState();
   const [driverAge, setDriverAge] = useState();
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const options = { month: "short", day: "numeric", year: "numeric" };
@@ -33,6 +35,12 @@ function DriverInfo({ driverStandings }) {
       if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         age--;
       }
+
+      getNews(name, 10, "title").then(info => {
+        setArticles(info.filter(article => {
+          return (article.author && !article.content.includes("[Removed]") && article.title && article.urlToImage)
+        }))
+      })
     
       setDriverAge(age);
       setDriverDOB(DOB.toLocaleDateString(undefined, options));
@@ -71,7 +79,7 @@ function DriverInfo({ driverStandings }) {
 
   return (
     <div className="driver-info">
-      <div className="driver-info-header">
+      <div className="driver-info-header driver-info-section">
         <div className="driver-info-picture-container">
           <img className="driver-info-cutout" src={driverCutout} />
           <h2 className="driver-info-number">{driverNumber}</h2>
@@ -96,7 +104,22 @@ function DriverInfo({ driverStandings }) {
           </div>
         </div>
       </div>
-      
+      {articles && articles.length && <div className="driver-info-news driver-info-section">
+        <h1 className="driver-info-news-header">{driverFirstName} {driverLastName} News</h1>
+        <div className="driver-info-articles-container">
+          {articles.map((article, index) => {
+            return (<NewsCard 
+              key={index}
+              url={article.url}
+              index={index}
+              title={article.title}
+              articleImage={article.urlToImage}
+              source={article.source.name}
+              publishedDate={article.publishedAt}
+              description={article.description} />)
+          })}
+        </div>
+      </div>}
     </div>
   )
 }

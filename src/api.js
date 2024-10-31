@@ -64,9 +64,10 @@ export const getConstructorStandings = async (year) => {
   }
 };
 
-export const getNews = async (topic, resultsLimit = 20) => {
+export const getNews = async (topic, resultsLimit = 20, searchIn = "title,description") => {
+  let searchin = encodeURIComponent(searchIn);
   let mainNewsQuery = `q=${topic.split("_").join("%20")}`; 
-  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=title,description&pageSize=${resultsLimit}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=${searchin}&pageSize=${resultsLimit}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
 
   try {
     const url = `${NEWS_API_BASE_URL}${path}`;
