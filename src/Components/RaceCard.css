@@ -1,12 +1,16 @@
 .race-card {
   flex-basis: calc(50% - 10px);
-  /* background: var(--card-background-gradient-horizontal); */
+}
+
+.race-card-link {
   box-sizing: border-box;
   background-color: #222;
   border-radius: 10px;
-  color: #fff;
   display: flex;
   justify-content: space-between;
+  color: #fff;
+  text-decoration: none;
+
 }
 
 .race-card-left-section {
