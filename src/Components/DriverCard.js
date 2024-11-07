@@ -48,32 +48,35 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
         </div>
         )}
       {(location.pathname === "/teams") && (
-        <div>
+        <div className="team-card">
           <Link 
             to={`/team/${encodeURIComponent(teamName)}`}
             className="driver-card-link"
             key={driverKey}>
-            <div className="card-top-info">
-              <h2 className="team-position">{teamPosition}</h2>
-              <h2 className="team-points">{teamPoints}</h2>
+            <div className="card-top-info card-top-info-team">
             </div>
             <div 
               className="team-image-container">
               { driverImages ? (
                 <img 
-                  src={driverImages.logo}
-                  className="team-image"
-                  alt={`${teamName} logo`}
+                src={driverImages.logo}
+                className="team-image"
+                alt={`${teamName} logo`}
                 />
               ) : (
                 <div className="no-driver-image no-team-image">no image available</div>
               )}
             </div>
-            <h2 className="team-name">
-              {teamName}
-            </h2>
-            <div className="team-wins">{teamWins}</div>
-            <div className="team-nationality">{teamNationality}</div>
+            <div className="team-card-bottom-info">
+              <h1 className="team-name">
+                {teamName}
+              </h1>
+              <h2 className="team-nationality">{teamNationality}</h2>
+              <div className="team-card-last-row">
+                <h2 className="team-position">Position: {teamPosition}</h2>
+                <h2 className="team-points">{teamPoints}</h2>
+              </div>
+            </div>
           </Link>
         </div>
       )}

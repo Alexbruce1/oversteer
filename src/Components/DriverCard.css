@@ -30,15 +30,13 @@
   margin-bottom: 180px;
 }
 
-.driver-number,
-.team-position {
+.driver-number {
   font-size: 40px;
   font-weight: 900;
   line-height: .9;
 }
 
-.driver-code,
-.team-points {
+.driver-code {
   font-size: 35px;
   font-style: italic;
   font-weight: 100;
@@ -79,11 +77,6 @@
   color: #ddd;
 }
 
-.team-name {
-  font-style: italic;
-  color: var(--f1-red);
-}
-
 .driver-last-name {
   font-weight: 700;
   color: #eee;
@@ -95,11 +88,21 @@
   justify-content: space-between;
 }
 
-.driver-points,
-.team-nationality {
+.driver-points {
   text-align: right;
   font-size: 15px;
   font-weight: 900;
+}
+
+/* ----------------TEAM SPECIFIC--------------------------------- */
+
+.team-card {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.card-top-info-team {
+  margin-bottom: unset;
 }
 
 .team-image-container {
@@ -112,10 +115,32 @@
 }
 
 .team-image {
-  /* background-color: var(--header-black); */
   width: 100%;
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   margin: 0 auto;
+}
+
+.team-name {
+  text-align: center;
+  font-size: 32px;
+  margin: 0;
+}
+
+.team-nationality {
+  text-align: center;
+  font-weight: 200;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.team-card-last-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-points,
+.team-position {
+  font-size: 20px;
 }
