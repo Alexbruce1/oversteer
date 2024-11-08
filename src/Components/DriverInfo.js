@@ -78,7 +78,11 @@ function DriverInfo({ driverStandings }) {
   }, [driverStandings])
 
   useEffect(() => {
-    if (driverNationality) {
+    if (driverNationality === "England") {
+      getCountryFlag("United Kingdom").then(url => {
+        setDriverFlag(url);
+      });
+    } else {
       getCountryFlag(driverNationality).then(url => {
         setDriverFlag(url);
       });
