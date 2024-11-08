@@ -34,13 +34,21 @@ function DriverInfo({ driverStandings }) {
     
       if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         age--;
-      }
+      };
 
       getNews(name, 10, "title").then(info => {
-        setArticles(info.filter(article => {
-          return (article.author && !article.content.includes("[Removed]") && article.title && article.urlToImage)
-        }))
-      })
+        let articlesWithData = info.filter(article => {
+          return (article.author && !article.content.includes("[Removed]") && article.title && article.urlToImage && article.url)
+        });
+        let articleLimit = articlesWithData.length > 8 ? 9 : articlesWithData.length > 5 ? 6 : articlesWithData.length;
+        let limitedArticles = [];
+
+        for (let i = 0; i < articleLimit; i++) {
+            limitedArticles.push(articlesWithData[i]);
+        };
+
+        setArticles(limitedArticles);
+      });
     
       setDriverAge(age);
       setDriverDOB(DOB.toLocaleDateString(undefined, options));
@@ -104,10 +112,10 @@ function DriverInfo({ driverStandings }) {
           </div>
         </div>
       </div>
-      {articles && articles.length && <div className="driver-info-news driver-info-section">
+      {articles && articles.length > 0 && <div className="driver-info-news driver-info-section">
         <h1 className="driver-info-news-header">{driverFirstName} {driverLastName} News</h1>
         <div className="driver-info-articles-container">
-          {articles.map((article, index) => {
+          {articles.length && articles.map((article, index) => {
             return (<NewsCard 
               key={index}
               url={article.url}
