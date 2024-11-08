@@ -36,7 +36,7 @@ function DriverInfo({ driverStandings }) {
         age--;
       };
 
-      getNews(name, 10, "title").then(info => {
+      getNews(`${name}_f1`, 10, "title").then(info => {
         let articlesWithData = info.filter(article => {
           return (article.author && !article.content.includes("[Removed]") && article.title && article.urlToImage && article.url)
         });
