@@ -40,8 +40,9 @@ function DriverInfo({ driverStandings }) {
         let articlesWithData = info.filter(article => {
           return (article.author && !article.content.includes("[Removed]") && article.title && article.urlToImage && article.url)
         });
-        let articleLimit = articlesWithData.length > 8 ? 9 : articlesWithData.length > 5 ? 6 : articlesWithData.length;
+        let articleLimit = (articlesWithData.length > 8) ? 9 : (articlesWithData.length > 5) ? 6 : (articlesWithData.length > 3) ? 3 : articlesWithData.length;
         let limitedArticles = [];
+
 
         for (let i = 0; i < articleLimit; i++) {
             limitedArticles.push(articlesWithData[i]);
@@ -78,14 +79,16 @@ function DriverInfo({ driverStandings }) {
   }, [driverStandings])
 
   useEffect(() => {
-    if (driverNationality === "England") {
-      getCountryFlag("United Kingdom").then(url => {
-        setDriverFlag(url);
-      });
-    } else {
-      getCountryFlag(driverNationality).then(url => {
-        setDriverFlag(url);
-      });
+    if (driverNationality) {
+      if (driverNationality === "England") {
+        getCountryFlag("United Kingdom").then(url => {
+          setDriverFlag(url);
+        });
+      } else {
+        getCountryFlag(driverNationality).then(url => {
+          setDriverFlag(url);
+        });
+      }
     }
   }, [driverNationality]);
 
