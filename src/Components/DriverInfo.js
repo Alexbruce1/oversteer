@@ -37,9 +37,10 @@ function DriverInfo({ driverStandings }) {
       };
 
       getNews(`${name}_f1`, 10, "title").then(info => {
-        let articlesWithData = info.filter(article => {
-          return (article.source.name && article.content && article.title && article.image && article.url)
-        });
+        const articlesWithData = Array.isArray(info) ? info.filter(article => {
+          return article.source.name && article.content && article.title && article.image && article.url;
+        }) : [];      
+
         let articleLimit = (articlesWithData.length > 8) ? 9 : (articlesWithData.length > 5) ? 6 : (articlesWithData.length > 3) ? 3 : articlesWithData.length;
         let limitedArticles = [];
 
