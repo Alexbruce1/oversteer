@@ -69,13 +69,11 @@ export const getConstructorStandings = async (year) => {
 export const getNews = async (topic, resultsLimit = 10) => {
   let mainNewsQuery = `q=${topic.split("_").join("%20")}`; 
   let path = `${mainNewsQuery}&lang=en&max=${resultsLimit}&apikey=${gNewsApiKey}`
-  console.log("HERE: ", `${G_NEWS_API_BASE_URL}${path}`)
 
   try {
     const url = `${G_NEWS_API_BASE_URL}${path}`;
     const response = await axios.get(url);
     const articles = response.data.articles;
-    console.log("ARTICLES HERE: ", articles)
     return articles;
   } catch (error) {
     console.error("Error getting articles: ", error);
