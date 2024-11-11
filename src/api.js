@@ -4,9 +4,11 @@ let newsSortBy = "publishedAt";
 let newsLanguage = "en";
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
+const gNewsApiKey = process.env.REACT_APP_GNEWS_API_KEY;
 const openAIApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 const JOLPI_API_BASE_URL = "https://api.jolpi.ca/ergast/f1/";
 const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?`;
+const G_NEWS_API_BASE_URL = `https://gnews.io/api/v4/search?`;
 const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
 const THE_SPORTS_DB_TEAMS_URL =  `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/search_all_teams.php?l=Formula%201`
 
@@ -64,15 +66,16 @@ export const getConstructorStandings = async (year) => {
   }
 };
 
-export const getNews = async (topic, resultsLimit = 20, searchIn = "title,description") => {
-  let searchin = encodeURIComponent(searchIn);
+export const getNews = async (topic, resultsLimit = 10) => {
   let mainNewsQuery = `q=${topic.split("_").join("%20")}`; 
-  let path = `${mainNewsQuery}&sortBy=${newsSortBy}&searchin=${searchin}&pageSize=${resultsLimit}&language=${newsLanguage}&apiKey=${process.env.REACT_APP_NEWS_API_API_KEY}`;
+  let path = `${mainNewsQuery}&lang=en&max=${resultsLimit}&apikey=${gNewsApiKey}`
+  console.log("HERE: ", `${G_NEWS_API_BASE_URL}${path}`)
 
   try {
-    const url = `${NEWS_API_BASE_URL}${path}`;
+    const url = `${G_NEWS_API_BASE_URL}${path}`;
     const response = await axios.get(url);
     const articles = response.data.articles;
+    console.log("ARTICLES HERE: ", articles)
     return articles;
   } catch (error) {
     console.error("Error getting articles: ", error);
