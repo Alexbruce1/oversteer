@@ -78,7 +78,7 @@ function Home ({ chooseSeason, seasons, season, drivers, driverImages, articles,
                 url={article.url}
                 index={index}
                 title={article.title}
-                articleImage={article.urlToImage}
+                articleImage={article.image}
                 source={article.source.name}
                 publishedDate={article.publishedAt}
                 description={article.description} />
