@@ -28,6 +28,15 @@ function App() {
   const [articlesError, setArticlesError] = useState(null);
 
   useEffect(() => {
+    if (window.location.hostname === 'localhost') {
+      document.title = 'Oversteer - Local';
+    } else {
+      document.title = 'Oversteer';
+    }
+  }, []);
+
+
+  useEffect(() => {
     let years = [];
     for (let i = 1950; i <= thisYear; i++) {
       years.push(i);
