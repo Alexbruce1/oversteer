@@ -9,7 +9,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
   }, [driverImages])
 
   return (
-    <div className="driver-card">
+    <div className={(location.pathname === "/drivers") ? "driver-card" : "driver-card driver-card-team"}>
       {(location.pathname === "/drivers" || location.pathname === "/") && (
         <div 
           className="driver-card-bg-image"    

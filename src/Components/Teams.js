@@ -17,6 +17,7 @@ function Teams({ getStandings, standings, teamData }) {
 
   return (
     <div className="Teams">
+      <h1>F1 Teams</h1>
       <div className="team-card-container card-container">
         {standings.length && standings.map(team => {
           return (

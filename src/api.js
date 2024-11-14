@@ -2,6 +2,7 @@ import axios from "axios";
 
 let newsSortBy = "publishedAt";
 let newsLanguage = "en";
+const thisYear = new Date().getFullYear();
 
 const sportsDBApiKey = process.env.REACT_APP_SPORTS_DB_API_KEY;
 const gNewsApiKey = process.env.REACT_APP_GNEWS_API_KEY;
@@ -54,7 +55,7 @@ export const getResults = async (year = 2024, rounds) => {
   return results;
 };
 
-export const getConstructorStandings = async (year) => {
+export const getConstructorStandings = async (year = thisYear) => {
   try {
     const response = await apiClient.get(`/${year}/constructorstandings`);
     const data = response.data.MRData.StandingsTable.StandingsLists[0];
