@@ -1,0 +1,38 @@
+.team-info-content {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.team-stats-card {
+  background: var(--card-background-gradient-horizontal);
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.team-stats-badge {
+  height: 100%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.team-stats-info {
+  padding: 20px;
+  width: 100%;
+}
+
+.team-stats-top-line {
+  display: flex;
+}
+
+.team-stats-flag {
+  height: 40px;
+}
+
+.team-stats-name {
+  margin: auto 20px;
+  font-style: italic;
+}

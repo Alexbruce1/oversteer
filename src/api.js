@@ -12,6 +12,7 @@ const NEWS_API_BASE_URL = `https://newsapi.org/v2/everything?`;
 const G_NEWS_API_BASE_URL = `https://gnews.io/api/v4/search?`;
 const THE_SPORTS_DB_PLAYERS_URL = `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/searchplayers.php?p=`;
 const THE_SPORTS_DB_TEAMS_URL =  `https://www.thesportsdb.com/api/v1/json/${sportsDBApiKey}/search_all_teams.php?l=Formula%201`
+const THE_SPORTS_DB_BASE_URL =  `https://www.thesportsdb.com/api/v1/json`
 
 const apiClient = axios.create({
   baseURL: JOLPI_API_BASE_URL,
@@ -133,6 +134,18 @@ export const getTeamImages = async () => {
     return null;
   }
 };
+
+export const getIndividualTeamData = async team => {
+  console.log("URL HERE: ", `${THE_SPORTS_DB_BASE_URL}/3/searchteams.php?t=${team}`)
+  try {
+    const response = await fetch(`${THE_SPORTS_DB_BASE_URL}/3/searchteams.php?t=${team}`);
+    const data = await response.json();
+    console.log(data)
+    return data.teams[0];
+  } catch (error) {
+    console.error("Error fetching data for this team: ", error)
+  }
+}
 
 export const getCountryFlag = async (country) => {
   try {

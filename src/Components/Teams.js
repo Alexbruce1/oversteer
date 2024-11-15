@@ -8,7 +8,7 @@ function Teams({ getStandings, standings, teamData }) {
   useEffect(() => {
     let cleanedImageData = []
     teamData.length && teamData.forEach(team => {
-      cleanedImageData.push({name: team.strTeam, logo: team.strLogo, car: team.strEquipment})
+      cleanedImageData.push({name: team.strTeam, logo: team.strBadge, car: team.strEquipment})
     });
 
     setTeamImages(cleanedImageData);
