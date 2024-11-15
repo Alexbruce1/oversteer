@@ -239,7 +239,7 @@ function App() {
             season={season}/>} 
         />
         <Route path="/driver/:name" element={<DriverInfo driverStandings={standings} />} />
-        <Route path="/team/:name" element={<TeamInfo teamStandings={teamStandings} />} />
+        <Route path="/team/:name" element={<TeamInfo teamStandings={teamStandings} drivers={standings} />} />
       </Routes>
     </div>
   );
