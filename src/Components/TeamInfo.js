@@ -143,8 +143,9 @@ function TeamInfo({ teamStandings, drivers }) {
             backgroundSize: "50%" } : {
             visibility: "hidden",
             height: "0"
-        }}></div>
-        <p>{teamDescription}</p>
+        }}>
+        </div>
+        <p className="team-description">{teamDescription}</p>
       </div>
     </div>
   )
