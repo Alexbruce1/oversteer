@@ -4,7 +4,7 @@ import { getConstructorStandings, getIndividualTeamData, getCountryFlag } from "
 import "./TeamInfo.css";
 import DriverCard from "./DriverCard";
 
-function TeamInfo({ teamStandings, drivers }) {
+function TeamInfo({ teamStandings, drivers, driverImages }) {
   const { name } = useParams();
   const [teamName, setTeamName] = useState("");
   const [teamNationality, setTeamNationality] = useState("");
@@ -116,7 +116,7 @@ function TeamInfo({ teamStandings, drivers }) {
               teamPosition === "3" ? "3rd" : `${teamPosition}th`} Place
             </h1>
           </div>
-          {/* <div className="team-stats-driver-card-container">
+          <div className="team-stats-driver-card-container">
             {teamDrivers && teamDrivers.length > 1 && teamDrivers.map(driver => {
               console.log("HERE: ", driver)
               return <DriverCard 
@@ -125,14 +125,14 @@ function TeamInfo({ teamStandings, drivers }) {
                 driverNumber={driver.Driver.permanentNumber}
                 driverCode={driver.Driver.code}
                 driverWikiLink={driver.Driver.url}
-                // driverImages={driverImages[driver.Driver.driverId]}
+                driverImages={driverImages && (driverImages[driver.Driver.driverId])}
                 driverFirst={driver.Driver.givenName}
                 driverLast={driver.Driver.familyName}
-                // driverTeam={driver.Constructors[0].name}
+                driverTeam={teamName}
                 driverPoints={driver.points}
               />
             })}
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="team-info-content">
