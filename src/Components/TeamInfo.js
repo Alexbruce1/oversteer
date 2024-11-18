@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getConstructorStandings, getIndividualTeamData, getCountryFlag } from "../api"
 import "./TeamInfo.css";
+import DriverCard from "./DriverCard";
 
-function TeamInfo({ teamStandings }) {
+function TeamInfo({ teamStandings, drivers, driverImages }) {
   const { name } = useParams();
   const [teamName, setTeamName] = useState("");
   const [teamNationality, setTeamNationality] = useState("");
   const [teamWiki, setTeamWiki] = useState("");
   const [teamPosition, setTeamPosition] = useState("");
   const [teamBadge, setTeamBadge] = useState("");
+  const [teamDrivers, setTeamDrivers] = useState([]);
   const [teamDescription, setTeamDescription] = useState("");
   const [teamFoundedYear, setTeamFoundedYear] = useState("");
   const [teamCarImage, setTeamCarImage] = useState("");
@@ -87,7 +89,15 @@ function TeamInfo({ teamStandings }) {
         });
       }
     }
-  }, [teamNationality])
+  }, [teamNationality]);
+
+  useEffect(() => {
+    if (drivers && drivers.length) {
+      let filteredDrivers = drivers.filter(driver => driver.Constructors[0].name === name);
+      console.log("DRIVERS: ", filteredDrivers)
+      setTeamDrivers(filteredDrivers);
+    }
+  }, [drivers])
 
   return (
     <div className="team-info">
@@ -96,15 +106,46 @@ function TeamInfo({ teamStandings }) {
         <div className="team-stats-info">
           <div className="team-stats-top-line">
             <h1 className="team-stats-name">{teamName}</h1>
-            <img className="team-stats-flag" src={teamCountryFlag} />
+            <div>
+              <img className="team-stats-flag" src={teamCountryFlag} />
+              <p className="team-stats-nationality">{teamNationality}</p>
+            </div>
+            <h1 className="team-stats-position">
+              {teamPosition === "1" ? "1st" :
+              teamPosition === "2" ? "2nd" :
+              teamPosition === "3" ? "3rd" : `${teamPosition}th`} Place
+            </h1>
           </div>
-          <img src={teamCarImage} />
+          <div className="team-stats-driver-card-container">
+            {teamDrivers && teamDrivers.length > 1 && teamDrivers.map(driver => {
+              console.log("HERE: ", driver)
+              return <DriverCard 
+                key={driver.Driver.code}
+                driverKey={driver.Driver.code} 
+                driverNumber={driver.Driver.permanentNumber}
+                driverCode={driver.Driver.code}
+                driverWikiLink={driver.Driver.url}
+                driverImages={driverImages && (driverImages[driver.Driver.driverId])}
+                driverFirst={driver.Driver.givenName}
+                driverLast={driver.Driver.familyName}
+                driverTeam={teamName}
+                driverPoints={driver.points}
+              />
+            })}
+          </div>
         </div>
       </div>
       <div className="team-info-content">
-        <p>{teamNationality}</p>
-        <p>{teamFoundedYear}</p>
-        <p>{teamDescription}</p>
+        <div className="car-image-container"  style={teamCarImage ? { 
+            backgroundImage: `url(${teamCarImage})`, 
+            backgroundPosition: "center ", 
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "50%" } : {
+            visibility: "hidden",
+            height: "0"
+        }}>
+        </div>
+        <p className="team-description">{teamDescription}</p>
       </div>
     </div>
   )

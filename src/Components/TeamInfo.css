@@ -26,13 +26,44 @@
 
 .team-stats-top-line {
   display: flex;
+  border-bottom: 2px solid;
+  justify-content: space-between;
+}
+
+.team-stats-name {
+  margin: auto 20px;
+  font-size: 45px;
+  font-style: italic;
 }
 
 .team-stats-flag {
   height: 40px;
 }
 
-.team-stats-name {
+.team-stats-nationality {
+  margin: 0 0 10px 0;
+}
+
+.team-stats-position {
   margin: auto 20px;
-  font-style: italic;
+}
+
+.team-stats-driver-card-container {
+  background-color: green;
+  width: 100%;
+  height: 275px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.car-image-container {
+  width: 100%;
+  height: 150px;
+}
+
+.team-description {
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.3;
 }
