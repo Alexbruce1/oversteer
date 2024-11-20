@@ -6,7 +6,7 @@
 
 .team-stats-card {
   background: var(--card-background-gradient-horizontal);
-  height: 500px;
+  height: 480px;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;

@@ -6,6 +6,10 @@
   text-align: left;
 }
 
+.driver-card:hover {
+  background: var(--card-background-gradient-hover);
+}
+
 .driver-card-bg-image {
   padding: 0 ;
   margin-top: 20px;

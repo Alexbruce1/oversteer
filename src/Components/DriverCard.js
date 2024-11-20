@@ -115,7 +115,6 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
                   {driverFirst}<strong className="driver-name driver-last-name">{driverLast}</strong>
                 </h2>
                 <div className="driver-card-bottom-row">
-                  <div className="driver-team">{driverTeam}</div>
                   <div className="driver-points">{driverPoints !== 1 ? `${driverPoints} PTS` : "1 PT"}</div>
                 </div>
               </div>
