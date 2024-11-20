@@ -64,7 +64,6 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
               setTeamWebsite(team.strWebsite);
               setTeamLocation(team.strStadium);
             } else {
-              console.log("error")
             }
           })
         } else {
@@ -94,7 +93,6 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
   useEffect(() => {
     if (drivers && drivers.length) {
       let filteredDrivers = drivers.filter(driver => driver.Constructors[0].name === name);
-      console.log("DRIVERS: ", filteredDrivers)
       setTeamDrivers(filteredDrivers);
     }
   }, [drivers])
@@ -118,7 +116,6 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
           </div>
           <div className="team-stats-driver-card-container">
             {teamDrivers && teamDrivers.length > 1 && teamDrivers.slice(0, 2).map((driver, index) => {
-              console.log("HERE: ", driver)
               return <DriverCard 
                 key={index}
                 driverKey={driver.Driver.code} 
