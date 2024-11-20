@@ -117,10 +117,10 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
             </h1>
           </div>
           <div className="team-stats-driver-card-container">
-            {teamDrivers && teamDrivers.length > 1 && teamDrivers.map(driver => {
+            {teamDrivers && teamDrivers.length > 1 && teamDrivers.slice(0, 2).map((driver, index) => {
               console.log("HERE: ", driver)
               return <DriverCard 
-                key={driver.Driver.code}
+                key={index}
                 driverKey={driver.Driver.code} 
                 driverNumber={driver.Driver.permanentNumber}
                 driverCode={driver.Driver.code}

@@ -4,6 +4,7 @@
   --racing-font: "Racing Sans One", sans-serif;
   --element-width: 80%;
   --card-background-gradient: linear-gradient(#444, #222);
+  --card-background-gradient-hover: linear-gradient(#454545, #151515);
   --card-background-gradient-horizontal: linear-gradient(270deg, #444, #222);
 }
 
