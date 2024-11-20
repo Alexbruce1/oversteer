@@ -11,7 +11,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
 
   return (
     <div className={(
-      location.pathname.includes("/drivers")) ? "driver-card" : 
+      location.pathname.includes("/drivers")) || location.pathname === "/" ? "driver-card" : 
       (location.pathname.includes("/teams")) ? "driver-card driver-card-team" :
       "driver-card driver-card-team-stats"}>
       {(location.pathname.includes("/drivers") || location.pathname === "/") && (
