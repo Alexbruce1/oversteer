@@ -147,3 +147,14 @@
 .team-position {
   font-size: 20px;
 }
+
+/* ----------- Team Info cards ---------------------------- */
+
+.driver-card-team-stats {
+  width: 45%;
+  height: 300px;
+}
+
+.driver-card-team-stats .driver-card-bg-image {
+  height: 300px;
+}

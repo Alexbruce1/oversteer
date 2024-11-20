@@ -6,7 +6,7 @@
 
 .team-stats-card {
   background: var(--card-background-gradient-horizontal);
-  height: 400px;
+  height: 500px;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
@@ -49,12 +49,11 @@
 }
 
 .team-stats-driver-card-container {
-  background-color: green;
   width: 100%;
   height: 275px;
   margin: 10px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .car-image-container {

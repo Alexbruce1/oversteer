@@ -6,14 +6,15 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
   const location = useLocation();
   useEffect(() => {
     localStorage.setItem(`${driverFirst}_${driverLast}_images`, JSON.stringify(driverImages))
+
   }, [driverImages])
 
   return (
     <div className={(
-      location.pathname === "/drivers") ? "driver-card" : 
-      (location.pathname === "/teams") ? "driver-card driver-card-team" :
+      location.pathname.includes("/drivers")) ? "driver-card" : 
+      (location.pathname.includes("/teams")) ? "driver-card driver-card-team" :
       "driver-card driver-card-team-stats"}>
-      {(location.pathname === "/drivers" || location.pathname === "/") && (
+      {(location.pathname.includes("/drivers") || location.pathname === "/") && (
         <div 
           className="driver-card-bg-image"    
           style={{ 
@@ -85,7 +86,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
         </div>
       )}
 {/* ---------------------- INDIVIDUAL TEAM --------------------------------------- */}
-      {/* {(location.pathname === "/team/") && (
+      {(location.pathname.includes("/team/")) && (
         <div 
           className="driver-card-bg-image"    
           style={{ 
@@ -121,7 +122,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             </div>
           </Link>
         </div>
-      )} */}
+      )}
     </div>
   )
 }
