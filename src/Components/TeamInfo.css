@@ -5,7 +5,7 @@
 }
 
 .team-stats-card {
-  background: var(--card-background-gradient-horizontal);
+  /* background: linear-gradient(270deg, #444, var(--Ferrari)); */
   height: 480px;
   border-radius: 20px;
   display: flex;

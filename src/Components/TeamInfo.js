@@ -74,6 +74,8 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
       }
     }
     fetchAndSetTeam();
+
+    console.log(`linear-gradient(270deg, #444, var(--${teamName.replace(/ /g, "-")})`)
   }, [teamStandings, name]);
 
   useEffect(() => {
@@ -98,8 +100,10 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
   }, [drivers])
 
   return (
-    <div className="team-info">
-      <div className="team-info-content team-stats-card">
+    teamName ? (<div className="team-info">
+      <div className="team-info-content team-stats-card" style={{
+        background: `linear-gradient(270deg, var(--${teamName.replace(/ /g, "-")}), #222`
+      }}>
         <img className="team-stats-badge" src={teamBadge} />
         <div className="team-stats-info">
           <div className="team-stats-top-line">
@@ -144,7 +148,7 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
         </div>
         <p className="team-description">{teamDescription}</p>
       </div>
-    </div>
+    </div>) : null
   )
 }
 

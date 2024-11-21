@@ -82,7 +82,7 @@
 }
 
 .driver-last-name {
-  font-weight: 700;
+  font-weight: 900;
   color: #eee;
 }
 
@@ -90,6 +90,10 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.driver-team {
+  font-weight: 900;
 }
 
 .driver-points {
