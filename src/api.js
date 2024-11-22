@@ -136,11 +136,9 @@ export const getTeamImages = async () => {
 };
 
 export const getIndividualTeamData = async team => {
-  console.log("URL HERE: ", `${THE_SPORTS_DB_BASE_URL}/3/searchteams.php?t=${team}`)
   try {
     const response = await fetch(`${THE_SPORTS_DB_BASE_URL}/3/searchteams.php?t=${team}`);
     const data = await response.json();
-    console.log(data)
     return data.teams[0];
   } catch (error) {
     console.error("Error fetching data for this team: ", error)

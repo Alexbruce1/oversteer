@@ -64,7 +64,6 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
               setTeamWebsite(team.strWebsite);
               setTeamLocation(team.strStadium);
             } else {
-              console.log("error")
             }
           })
         } else {
@@ -75,6 +74,8 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
       }
     }
     fetchAndSetTeam();
+
+    console.log(`linear-gradient(270deg, #444, var(--${teamName.replace(/ /g, "-")})`)
   }, [teamStandings, name]);
 
   useEffect(() => {
@@ -94,14 +95,15 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
   useEffect(() => {
     if (drivers && drivers.length) {
       let filteredDrivers = drivers.filter(driver => driver.Constructors[0].name === name);
-      console.log("DRIVERS: ", filteredDrivers)
       setTeamDrivers(filteredDrivers);
     }
   }, [drivers])
 
   return (
-    <div className="team-info">
-      <div className="team-info-content team-stats-card">
+    teamName ? (<div className="team-info">
+      <div className="team-info-content team-stats-card" style={{
+        background: `linear-gradient(270deg, var(--${teamName.replace(/ /g, "-")}), #222`
+      }}>
         <img className="team-stats-badge" src={teamBadge} />
         <div className="team-stats-info">
           <div className="team-stats-top-line">
@@ -118,7 +120,6 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
           </div>
           <div className="team-stats-driver-card-container">
             {teamDrivers && teamDrivers.length > 1 && teamDrivers.slice(0, 2).map((driver, index) => {
-              console.log("HERE: ", driver)
               return <DriverCard 
                 key={index}
                 driverKey={driver.Driver.code} 
@@ -147,7 +148,7 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
         </div>
         <p className="team-description">{teamDescription}</p>
       </div>
-    </div>
+    </div>) : null
   )
 }
 

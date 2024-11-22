@@ -13,7 +13,10 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
     <div className={(
       location.pathname.includes("/drivers")) || location.pathname === "/" ? "driver-card" : 
       (location.pathname.includes("/teams")) ? "driver-card driver-card-team" :
-      "driver-card driver-card-team-stats"}>
+      "driver-card driver-card-team-stats"}
+      style={location.pathname === "/teams" ? {
+      background: `linear-gradient(150deg, var(--${teamName.replace(/ /g, "-")}) -50%, #222`
+      } : {background: "var(--card-background-gradient)"}}>
       {(location.pathname.includes("/drivers") || location.pathname === "/") && (
         <div 
           className="driver-card-bg-image"    
@@ -78,7 +81,9 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
               </h1>
               <h2 className="team-nationality">{teamNationality}</h2>
               <div className="team-card-last-row">
-                <h2 className="team-position">Position: {teamPosition}</h2>
+                <h2 className="team-position">{teamPosition === "1" ? "1st" :
+                  teamPosition === "2" ? "2nd" :
+                  teamPosition === "3" ? "3rd" : `${teamPosition}th`} Place</h2>
                 <h2 className="team-points">{teamPoints}</h2>
               </div>
             </div>

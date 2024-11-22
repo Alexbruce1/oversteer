@@ -6,6 +6,18 @@
   --card-background-gradient: linear-gradient(#444, #222);
   --card-background-gradient-hover: linear-gradient(#454545, #151515);
   --card-background-gradient-horizontal: linear-gradient(270deg, #444, #222);
+
+  /* team accent colors */
+  --Mercedes: #27F4D2;
+  --Red-Bull: #3671C6;
+  --Ferrari: #E8002D;
+  --McLaren: #FF8000;
+  --Alpine-F1-Team: #FF87BC;
+  --RB-F1-Team: #6692FF;
+  --Aston-Martin: #229971;
+  --Williams: #64C4FF;
+  --Sauber: #52E252;
+  --Haas-F1-Team: #B6BABD;
 }
 
 body {
