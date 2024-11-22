@@ -104,7 +104,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
             to={`/driver/${encodeURIComponent(driverFirst)}_${encodeURIComponent(driverLast)}`}
             className="driver-card-link"
             key={driverKey}>
-            <div className="card-top-info">
+            <div className="card-top-info card-top-info-team-info">
               <h2 className="driver-number">{driverNumber}</h2>
               <h2 className="driver-code">{driverCode}</h2>
             </div>
