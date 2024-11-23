@@ -166,3 +166,7 @@
 .driver-card-team-stats .driver-card-bg-image {
   height: 300px;
 }
+
+.card-top-info-team-info {
+  margin-bottom: 0;
+}
