@@ -113,7 +113,7 @@ function DriverCard({ driverKey, driverNumber, driverCode, driverWikiLink, drive
               href={driverWikiLink}
               target="_blank">
               { !driverImages && (
-                <div className="no-driver-image">no image available</div>
+                <div className="no-driver-image">no image available currently</div>
               )}
               <div className="driver-lower-info">
                 <h2 className="driver-name driver-first-name">

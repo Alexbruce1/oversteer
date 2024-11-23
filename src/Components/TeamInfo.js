@@ -136,17 +136,19 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
           </div>
         </div>
       </div>
-      <div className="team-info-content">
-        <div className="car-image-container"  style={teamCarImage ? { 
-            backgroundImage: `url(${teamCarImage})`, 
-            backgroundPosition: "center ", 
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "50%" } : {
-            visibility: "hidden",
-            height: "0"
-        }}>
+      <div className="team-lower-content">
+        <div className="lower-content-container">
+          <div className="car-image-container"  style={teamCarImage ? { 
+              backgroundImage: `url(${teamCarImage})`, 
+              backgroundPosition: "center ", 
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "50%" } : {
+              visibility: "hidden",
+              height: "0"
+          }}>
+          </div>
+          <p className="team-description">{teamDescription}</p>
         </div>
-        <p className="team-description">{teamDescription}</p>
       </div>
     </div>) : null
   )
