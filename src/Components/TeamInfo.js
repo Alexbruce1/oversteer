@@ -138,16 +138,18 @@ function TeamInfo({ teamStandings, drivers, driverImages }) {
       </div>
       <div className="team-lower-content">
         <div className="lower-content-container">
-          <div className="car-image-container"  style={teamCarImage ? { 
-              backgroundImage: `url(${teamCarImage})`, 
-              backgroundPosition: "center ", 
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "50%" } : {
-              visibility: "hidden",
-              height: "0"
-          }}>
-          </div>
-          <p className="team-description">{teamDescription}</p>
+          <p className="team-description">
+            <div className="car-image-container" aria-label={`${teamName} F1 car image`} style={teamCarImage ? { 
+                backgroundImage: `url(${teamCarImage})`, 
+                backgroundPosition: "center", 
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "50%" } : {
+                visibility: "hidden",
+                height: "0"
+            }}>
+            </div>
+            {teamDescription}
+          </p>
         </div>
       </div>
     </div>) : null
